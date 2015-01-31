@@ -17,17 +17,15 @@
     <ClCompile Include="DirectXPage.xaml.cpp" />
     <ClCompile Include="pch.cpp" />
     <ClCompile Include="Content\Sample3DSceneRenderer.cpp">
-      <Filter>Rendering\Sample</Filter>
+      <Filter>Common</Filter>
     </ClCompile>
     <ClCompile Include="Content\SampleFpsTextRenderer.cpp">
-      <Filter>Rendering\Sample</Filter>
+      <Filter>Common</Filter>
     </ClCompile>
     <ClCompile Include="Common\DeviceResources.cpp">
       <Filter>Rendering</Filter>
     </ClCompile>
-    <ClCompile Include="Content\Debug2DScene.cpp">
-      <Filter>Rendering\Debug</Filter>
-    </ClCompile>
+    <ClCompile Include="Content\Debug2DScene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App.xaml.h" />
@@ -35,15 +33,15 @@
     <ClInclude Include="DirectXPage.xaml.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Content\Sample3DSceneRenderer.h">
-      <Filter>Rendering\Sample</Filter>
+      <Filter>Common</Filter>
     </ClInclude>
     <ClInclude Include="Content\SampleFpsTextRenderer.h">
-      <Filter>Rendering\Sample</Filter>
-    </ClInclude>
-    <ClInclude Include="Common\DeviceResources.h">
-      <Filter>Rendering</Filter>
+      <Filter>Common</Filter>
     </ClInclude>
     <ClInclude Include="Common\DirectXHelper.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\DeviceResources.h">
       <Filter>Rendering</Filter>
     </ClInclude>
     <ClInclude Include="Content\ShaderStructures.h">
@@ -52,18 +50,16 @@
     <ClInclude Include="Common\StepTimer.h">
       <Filter>Rendering</Filter>
     </ClInclude>
-    <ClInclude Include="Content\Debug2DScene.h">
-      <Filter>Rendering\Debug</Filter>
-    </ClInclude>
+    <ClInclude Include="Content\Debug2DScene.h" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="Assets\StoreLogo.png">
+    <Image Include="Assets\SmallLogo.png">
       <Filter>Assets</Filter>
     </Image>
     <Image Include="Assets\SplashScreen.png">
       <Filter>Assets</Filter>
     </Image>
-    <Image Include="Assets\SmallLogo.png">
+    <Image Include="Assets\StoreLogo.png">
       <Filter>Assets</Filter>
     </Image>
     <Image Include="Assets\Logo.png">
@@ -77,20 +73,17 @@
     <None Include="ChemistsFun_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Filter Include="Common">
+      <UniqueIdentifier>{b01581b7-b427-4008-8b2e-e740d42c3835}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Shaders">
       <UniqueIdentifier>{b5269b76-ce63-4a3b-974a-ad7f5d981efe}</UniqueIdentifier>
     </Filter>
     <Filter Include="Assets">
-      <UniqueIdentifier>{224283e4-9fd7-487d-baf4-cfdcfe886fd0}</UniqueIdentifier>
+      <UniqueIdentifier>{96207166-0bee-4495-8a14-2d4b881a8180}</UniqueIdentifier>
     </Filter>
     <Filter Include="Rendering">
-      <UniqueIdentifier>{2e2a9534-9c6e-4b69-98cb-0c791a29e304}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Rendering\Debug">
-      <UniqueIdentifier>{68acdbae-2239-4fa1-80ff-6593dada93c5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Rendering\Sample">
-      <UniqueIdentifier>{b01581b7-b427-4008-8b2e-e740d42c3835}</UniqueIdentifier>
+      <UniqueIdentifier>{a80d5c88-dcbd-4ea0-a0a2-4bc0cb5f157b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
