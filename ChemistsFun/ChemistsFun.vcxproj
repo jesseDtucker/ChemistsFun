@@ -101,33 +101,33 @@
     <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\$(MSBuildProjectName)\</OutDir>
     <IntDir>$(ProjectDir)$(Platform)\$(Configuration)\$(MSBuildProjectName)\</IntDir>
     <LibraryPath>$(SolutionDir)$(Platform)\$(Configuration)\Util;$(SolutionDir)$(Platform)\$(Configuration)\Box2D;$(SolutionDir)$(Platform)\$(Configuration)\GameLogic;$(LibraryPath)</LibraryPath>
-    <IncludePath>$(SolutionDir)/liquidfun/;$(SolutionDir)/Util/include/;$(SolutionDir)/GameLogic/include/;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)/liquidfun/;$(SolutionDir)/Util/include/;$(SolutionDir)/GameLogic/include/;$(SolutionDir)/ServiceModel/include/;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\$(MSBuildProjectName)\</OutDir>
     <IntDir>$(ProjectDir)$(Platform)\$(Configuration)\$(MSBuildProjectName)\</IntDir>
     <LibraryPath>$(SolutionDir)$(Platform)\$(Configuration)\Util;$(SolutionDir)$(Platform)\$(Configuration)\Box2D;$(SolutionDir)$(Platform)\$(Configuration)\GameLogic;$(LibraryPath)</LibraryPath>
-    <IncludePath>$(SolutionDir)/liquidfun/;$(SolutionDir)/Util/include/;$(SolutionDir)/GameLogic/include/;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)/liquidfun/;$(SolutionDir)/Util/include/;$(SolutionDir)/GameLogic/include/;$(SolutionDir)/ServiceModel/include/;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
     <IntDir>$(ProjectDir)$(Platform)\$(Configuration)\$(MSBuildProjectName)\</IntDir>
     <LibraryPath>$(SolutionDir)$(Platform)\$(Configuration)\Util;$(SolutionDir)$(Platform)\$(Configuration)\Box2D;$(SolutionDir)$(Platform)\$(Configuration)\GameLogic;$(LibraryPath)</LibraryPath>
-    <IncludePath>$(SolutionDir)/liquidfun/;$(SolutionDir)/Util/include/;$(SolutionDir)/GameLogic/include/;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)/liquidfun/;$(SolutionDir)/Util/include/;$(SolutionDir)/GameLogic/include/;$(SolutionDir)/ServiceModel/include/;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
     <IntDir>$(ProjectDir)$(Platform)\$(Configuration)\$(MSBuildProjectName)\</IntDir>
     <LibraryPath>$(SolutionDir)$(Platform)\$(Configuration)\Util;$(SolutionDir)$(Platform)\$(Configuration)\Box2D;$(SolutionDir)$(Platform)\$(Configuration)\GameLogic;$(LibraryPath)</LibraryPath>
-    <IncludePath>$(SolutionDir)/liquidfun/;$(SolutionDir)/Util/include/;$(SolutionDir)/GameLogic/include/;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)/liquidfun/;$(SolutionDir)/Util/include/;$(SolutionDir)/GameLogic/include/;$(SolutionDir)/ServiceModel/include/;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <IntDir>$(ProjectDir)$(Platform)\$(Configuration)\$(MSBuildProjectName)\</IntDir>
     <LibraryPath>$(SolutionDir)$(Platform)\$(Configuration)\Util;$(SolutionDir)$(Platform)\$(Configuration)\Box2D;$(SolutionDir)$(Platform)\$(Configuration)\GameLogic;$(LibraryPath)</LibraryPath>
-    <IncludePath>$(SolutionDir)/liquidfun/;$(SolutionDir)/Util/include/;$(SolutionDir)/GameLogic/include/;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)/liquidfun/;$(SolutionDir)/Util/include/;$(SolutionDir)/GameLogic/include/;$(SolutionDir)/ServiceModel/include/;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <IntDir>$(ProjectDir)$(Platform)\$(Configuration)\$(MSBuildProjectName)\</IntDir>
     <LibraryPath>$(SolutionDir)$(Platform)\$(Configuration)\Util;$(SolutionDir)$(Platform)\$(Configuration)\Box2D;$(SolutionDir)$(Platform)\$(Configuration)\GameLogic;$(LibraryPath)</LibraryPath>
-    <IncludePath>$(SolutionDir)/liquidfun/;$(SolutionDir)/Util/include/;$(SolutionDir)/GameLogic/include/;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)/liquidfun/;$(SolutionDir)/Util/include/;$(SolutionDir)/GameLogic/include/;$(SolutionDir)/ServiceModel/include/;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
     <Link>
