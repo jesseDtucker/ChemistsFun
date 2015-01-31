@@ -1,13 +1,10 @@
-
-#include "pch.h"
-
 #include <chrono>
 #include <future>
 
 #include "Arc_Assert.hpp"
 #include "Box2D/Box2D.h"
 #include "Emitter.hpp"
-#include "Game/Game.hpp"
+#include "Game.hpp"
 
 using namespace std;
 using namespace FluidGame;

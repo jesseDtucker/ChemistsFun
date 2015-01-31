@@ -25,12 +25,7 @@
     <ClCompile Include="Common\DeviceResources.cpp">
       <Filter>Rendering</Filter>
     </ClCompile>
-    <ClCompile Include="Game\Game.cpp">
-      <Filter>Game</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\Emitter.cpp">
-      <Filter>Game</Filter>
-    </ClCompile>
+    <ClCompile Include="Content\Debug2DScene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App.xaml.h" />
@@ -55,15 +50,7 @@
     <ClInclude Include="Common\StepTimer.h">
       <Filter>Rendering</Filter>
     </ClInclude>
-    <ClInclude Include="Game\Game.hpp">
-      <Filter>Game</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\B2_Helper.hpp">
-      <Filter>Game</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Emitter.hpp">
-      <Filter>Game</Filter>
-    </ClInclude>
+    <ClInclude Include="Content\Debug2DScene.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\SmallLogo.png">
@@ -97,9 +84,6 @@
     </Filter>
     <Filter Include="Rendering">
       <UniqueIdentifier>{a80d5c88-dcbd-4ea0-a0a2-4bc0cb5f157b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Game">
-      <UniqueIdentifier>{1b0195be-77bf-468b-b9fa-ad47a76b12f8}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
