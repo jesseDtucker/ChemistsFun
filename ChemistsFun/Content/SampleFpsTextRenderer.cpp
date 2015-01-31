@@ -105,6 +105,7 @@ void SampleFpsTextRenderer::CreateDeviceDependentResources()
 		m_deviceResources->GetD2DDeviceContext()->CreateSolidColorBrush(D2D1::ColorF(D2D1::ColorF::White), &m_whiteBrush)
 		);
 }
+
 void SampleFpsTextRenderer::ReleaseDeviceDependentResources()
 {
 	m_whiteBrush.Reset();
