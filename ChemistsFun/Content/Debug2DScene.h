@@ -17,14 +17,6 @@ namespace ChemistsFun
 	{
 	public:
 		Debug2DScene(const std::shared_ptr<DX::DeviceResources>& deviceResources);
-		void CreateDeviceDependentResources();
-		void CreateWindowSizeDependentResources();
-		void ReleaseDeviceDependentResources();
-
-		void Update(DX::StepTimer const& timer);
-		void Render();
-
-	private:
 		void DrawCircle(float x, float y, float radius);
 
 	private:

@@ -15,9 +15,7 @@ ChemistsFunMain::ChemistsFunMain(const std::shared_ptr<DX::DeviceResources>& dev
 	m_deviceResources->RegisterDeviceNotify(this);
 
 	// TODO: Replace this with your app's content initialization.
-	m_sceneRenderer = std::unique_ptr<Sample3DSceneRenderer>(new Sample3DSceneRenderer(m_deviceResources));
-
-	m_fpsTextRenderer = std::unique_ptr<SampleFpsTextRenderer>(new SampleFpsTextRenderer(m_deviceResources));
+	m_Debug2D = std::unique_ptr<Debug2DScene>(new Debug2DScene(m_deviceResources));
 
 	// TODO: Change the timer settings if you want something other than the default variable timestep mode.
 	// e.g. for 60 FPS fixed timestep update logic, call:
@@ -37,7 +35,6 @@ ChemistsFunMain::~ChemistsFunMain()
 void ChemistsFunMain::CreateWindowSizeDependentResources() 
 {
 	// TODO: Replace this with the size-dependent initialization of your app's content.
-	m_sceneRenderer->CreateWindowSizeDependentResources();
 }
 
 void ChemistsFunMain::StartRenderLoop()
@@ -76,21 +73,12 @@ void ChemistsFunMain::StopRenderLoop()
 void ChemistsFunMain::Update() 
 {
 	ProcessInput();
-
-	// Update scene objects.
-	m_timer.Tick([&]()
-	{
-		// TODO: Replace this with your app's content update functions.
-		m_sceneRenderer->Update(m_timer);
-		m_fpsTextRenderer->Update(m_timer);
-	});
 }
 
 // Process all input from the user before updating game state
 void ChemistsFunMain::ProcessInput()
 {
 	// TODO: Add per frame input handling here.
-	m_sceneRenderer->TrackingUpdate(m_pointerLocationX);
 }
 
 // Renders the current frame according to the current application state.
@@ -119,8 +107,7 @@ bool ChemistsFunMain::Render()
 
 	// Render the scene objects.
 	// TODO: Replace this with your app's content rendering functions.
-	m_sceneRenderer->Render();
-	m_fpsTextRenderer->Render();
+	m_Debug2D->DrawCircle(0.5f, 0.5f, 0.1f);
 
 	return true;
 }
