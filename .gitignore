@@ -158,3 +158,5 @@ $RECYCLE.BIN/
 
 # Mac desktop service store files
 .DS_Store
+
+boost_1_57_0/
