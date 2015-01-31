@@ -13,38 +13,62 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="App.xaml.cpp" />
-    <ClCompile Include="Common\DeviceResources.cpp" />
     <ClCompile Include="ChemistsFunMain.cpp" />
     <ClCompile Include="DirectXPage.xaml.cpp" />
     <ClCompile Include="pch.cpp" />
     <ClCompile Include="Content\Sample3DSceneRenderer.cpp">
-      <Filter>Common</Filter>
+      <Filter>Rendering\Sample</Filter>
     </ClCompile>
     <ClCompile Include="Content\SampleFpsTextRenderer.cpp">
-      <Filter>Common</Filter>
+      <Filter>Rendering\Sample</Filter>
+    </ClCompile>
+    <ClCompile Include="Common\DeviceResources.cpp">
+      <Filter>Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Content\Debug2DScene.cpp">
+      <Filter>Rendering\Debug</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App.xaml.h" />
-    <ClInclude Include="Common\DeviceResources.h" />
     <ClInclude Include="ChemistsFunMain.h" />
     <ClInclude Include="DirectXPage.xaml.h" />
-    <ClInclude Include="Common\DirectXHelper.h" />
-    <ClInclude Include="Common\StepTimer.h" />
-    <ClInclude Include="Content\ShaderStructures.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Content\Sample3DSceneRenderer.h">
-      <Filter>Common</Filter>
+      <Filter>Rendering\Sample</Filter>
     </ClInclude>
     <ClInclude Include="Content\SampleFpsTextRenderer.h">
-      <Filter>Common</Filter>
+      <Filter>Rendering\Sample</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\DeviceResources.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\DirectXHelper.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Content\ShaderStructures.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\StepTimer.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Content\Debug2DScene.h">
+      <Filter>Rendering\Debug</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="Assets\Logo.png" />
-    <Image Include="Assets\SmallLogo.png" />
-    <Image Include="Assets\StoreLogo.png" />
-    <Image Include="Assets\SplashScreen.png" />
+    <Image Include="Assets\StoreLogo.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\SplashScreen.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\SmallLogo.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\Logo.png">
+      <Filter>Assets</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest" />
@@ -53,14 +77,25 @@
     <None Include="ChemistsFun_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="DirectXPage.xaml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Filter Include="Common">
-      <UniqueIdentifier>{b01581b7-b427-4008-8b2e-e740d42c3835}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Shaders">
       <UniqueIdentifier>{b5269b76-ce63-4a3b-974a-ad7f5d981efe}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Assets">
+      <UniqueIdentifier>{224283e4-9fd7-487d-baf4-cfdcfe886fd0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Rendering">
+      <UniqueIdentifier>{2e2a9534-9c6e-4b69-98cb-0c791a29e304}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Rendering\Debug">
+      <UniqueIdentifier>{68acdbae-2239-4fa1-80ff-6593dada93c5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Rendering\Sample">
+      <UniqueIdentifier>{b01581b7-b427-4008-8b2e-e740d42c3835}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="DirectXPage.xaml">
+      <Filter>Rendering</Filter>
+    </Page>
   </ItemGroup>
 </Project>

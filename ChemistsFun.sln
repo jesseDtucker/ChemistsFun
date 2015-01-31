@@ -1,11 +1,12 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ChemistsFun", "ChemistsFun\ChemistsFun.vcxproj", "{6A753571-4CF4-4083-9D1B-2D69CFA4C08A}"
 	ProjectSection(ProjectDependencies) = postProject
 		{14FA8548-594F-41FC-8999-E9544C7CDF67} = {14FA8548-594F-41FC-8999-E9544C7CDF67}
+		{528BEFE7-F405-436E-B1F6-3E86D296AA44} = {528BEFE7-F405-436E-B1F6-3E86D296AA44}
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Box2D", "liquidfun\Box2D\Box2D.vcxproj", "{14FA8548-594F-41FC-8999-E9544C7CDF67}"
