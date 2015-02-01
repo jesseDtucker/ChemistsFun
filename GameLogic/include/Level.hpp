@@ -11,10 +11,10 @@ namespace FluidGame
 	{
 	public:
 
-		Level(b2World world, b2ParticleSystem particleSystem);
+		Level(WorldPtr world, b2ParticleSystem* particleSystem);
 
-		PROP_GET(b2World, World);
-		PROP_GET(b2ParticleSystem, b2ParticleSystem);
+		PROP_GET(WorldPtr, World);
+		b2ParticleSystem* GetParticleSystem();
 		PROP_SET_AND_GET(std::vector<std::shared_ptr<Emitter>>, Emitters);
 		PROP_SET_AND_GET(std::vector<std::pair<b2Transform COMMA b2PolygonShape>>, KillBoxes);
 		PROP_SET_AND_GET(std::shared_ptr<Character>, MainCharacter);
@@ -25,7 +25,7 @@ namespace FluidGame
 		void Step(float dt);
 
 	private:
-
+		b2ParticleSystem* m_particleSystem;
 		friend class LevelEntries;
 	};
 }

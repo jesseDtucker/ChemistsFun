@@ -98,7 +98,7 @@ std::shared_ptr<Level> LevelEntries::LoadLevelOne(float particleRadius)
 	b2ParticleSystemDef particleSystemDef;
 	particleSystemDef.radius = particleRadius;
 	particleSystemDef.maxCount = MAX_PARTICLES;
-	ParticleSystemPtr particleSystem = WrapB2Resource(world.get(), world->CreateParticleSystem(&particleSystemDef));
+	b2ParticleSystem *particleSystem = world.get()->CreateParticleSystem(&particleSystemDef);
 
 	particleSystem->SetGravityScale(GRAVITY_SCALE);
 	particleSystem->SetDensity(DENSITY);
@@ -118,7 +118,8 @@ std::shared_ptr<Level> LevelEntries::LoadLevelOne(float particleRadius)
 
 	result->SetKillBoxes(CreateKillBox(world));
 
-	result->SetMainCharacter(make_shared<Character>(b2Vec2{ 1.5f, 5.0f }, world));
+	auto character = make_shared<Character>(b2Vec2{ 1.5f, 5.0f }, world.get());
+	result->SetMainCharacter(character);
 
 
 	return result;

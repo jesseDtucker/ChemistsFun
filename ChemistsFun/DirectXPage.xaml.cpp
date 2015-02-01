@@ -169,11 +169,15 @@ void DirectXPage::OnPointerPressed(Object^ sender, PointerEventArgs^ e)
 {
 	// When the pointer is pressed begin tracking the pointer movement.
 	auto pointer = e->CurrentPoint;
+	auto context = m_deviceResources->GetD2DDeviceContext();
+	auto width = context->GetSize().width;
+	auto height = context->GetSize().height;
+	auto AR = width / height;
 
 	float x = pointer->Position.X;
 	float y = pointer->Position.Y;
 
-	m_draggedEmitter = m_main->GetGame().GetCurrentLevel()->CreateEmitter(x, y);
+	m_draggedEmitter = m_main->GetGame().GetCurrentLevel()->CreateEmitter((x / width) * (SCREEN_HEIGHT * AR), (y / height) * SCREEN_HEIGHT);
 }
 
 void DirectXPage::OnPointerMoved(Object^ sender, PointerEventArgs^ e)

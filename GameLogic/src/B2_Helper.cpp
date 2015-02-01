@@ -32,7 +32,7 @@ b2Body* FluidGame::CreateStaticBox(float x, float y, float width, float height, 
 	return body;
 }
 
-std::shared_ptr<Emitter> FluidGame::CreateEmitter(float x, float y, ParticleSystemPtr particleSystem)
+Emitter FluidGame::CreateEmitter(float x, float y, b2ParticleSystem* particleSystem)
 {
-	return make_shared<Emitter>(particleSystem.get(), b2Vec2{ x, y });
+	return Emitter(particleSystem, b2Vec2{ x, y });
 }
