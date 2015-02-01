@@ -4,13 +4,14 @@
 #include <memory>
 
 #include "B2_Helper.hpp"
+#include "Level.hpp"
 #include "PropertyHelper.hpp"
  
 namespace FluidGame
 {
 	class Emitter;
 
-	class Game : public b2DestructionListener
+	class Game
 	{
 	public:
 		Game();
@@ -18,25 +19,10 @@ namespace FluidGame
 		Game& operator=(const Game&) = delete;
 
 		PROP_GET(bool, IsRunning);
+		PROP_GET(Level, CurrentLevel);
 
-		std::pair<int, b2Vec2*> GetParticlesPositions();
-		PROP_GET(BodyPtr, Ground);
-
-		void HackSetup();
-		void RunSim();
-		
-
-		// Listeners
-		virtual void SayGoodbye(b2Joint* joint) override;
-		virtual void SayGoodbye(b2Fixture* fixture) override;
-		virtual void SayGoodbye(b2ParticleGroup* group) override;
-		virtual void SayGoodbye(b2ParticleSystem* particleSystem, int32 index) override;
-		
+		void RunSim(const Level& level);
 
 	private:
-		WorldPtr m_world;
-		ParticleSystemPtr m_particleSystem;
-		std::mutex m_syncLock;
-		std::shared_ptr<Emitter> m_emitter;
 	};
 }

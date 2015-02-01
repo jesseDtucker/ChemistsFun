@@ -2,11 +2,15 @@
 #include "ChemistsFunMain.h"
 #include "Common\DirectXHelper.h"
 
+#include "B2_Helper.hpp"
+#include "LevelEntries.hpp"
+
 using namespace std;
 using namespace ChemistsFun;
 using namespace Windows::Foundation;
 using namespace Windows::System::Threading;
 using namespace Concurrency;
+using namespace FluidGame;
 
 // Loads and initializes application assets when the application is loaded.
 ChemistsFunMain::ChemistsFunMain(const std::shared_ptr<DX::DeviceResources>& deviceResources) :
@@ -53,7 +57,7 @@ void ChemistsFunMain::StartRenderLoop()
 		}
 	});
 
-	m_game.RunSim();
+	m_game.RunSim(FluidGame::LevelEntries::LoadLevelOne());
 
 	// Run task on a dedicated high priority background thread.
 	m_renderLoopWorker = ThreadPool::RunAsync(workItemHandler, WorkItemPriority::High, WorkItemOptions::TimeSliced);
@@ -97,6 +101,18 @@ b2AABB GenerateBoundingBox(b2Body& body)
 	return result;
 }
 
+void DrawParticles(ParticleSystemPtr particleSystem, Debug2DScene& debugScene)
+{
+	auto particlePositions = particleSystem->GetPositionBuffer();
+	auto particleCount = particleSystem->GetParticleCount();
+	for (int i = 0; i < particleCount; ++i)
+	{
+		auto particlePos = particlePositions[i];
+		auto screenSpaceVec = TransformToLocal(particlePos);
+		debugScene.DrawCircle(screenSpaceVec.x, screenSpaceVec.y, 5.0f);
+	}
+}
+
 // Renders the current frame according to the current application state.
 // Returns true if the frame was rendered and is ready to be displayed.
 bool ChemistsFunMain::Render() 
@@ -108,24 +124,9 @@ bool ChemistsFunMain::Render()
 	m_Debug2D->Clear();
 	m_Debug2D->DrawCircle(20.5f, 50.5f, 50.1f);
 
-	auto particles = m_game.GetParticlesPositions();
-	for (int i = 0; i < particles.first; ++i)
-	{
-		auto particlePos = particles.second[i];
-		auto screenSpaceVec = TransformToLocal(particlePos);
-		m_Debug2D->DrawCircle(screenSpaceVec.x, screenSpaceVec.y, 5.0f);
-	}
+	DrawParticles(m_game.GetCurrentLevel().GetParticleSystem(), *m_Debug2D);
 
 	m_Debug2D->DrawText(L"MY TEXT", 100.0f, 100.0f, 150.0f, 50.0f);
-
-	auto& ground = m_game.GetGround();
-	if (ground != nullptr)
-	{
-		auto boundingBox = GenerateBoundingBox(*ground);
-		auto topLeft = TransformToLocal(boundingBox.upperBound);
-		auto bottomRight = TransformToLocal(boundingBox.lowerBound);
-		m_Debug2D->DrawRectangle(bottomRight.x, topLeft.x, topLeft.y, bottomRight.y);
-	}
 
 	return true;
 }

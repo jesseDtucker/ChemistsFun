@@ -27,7 +27,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="B2_Helper.cpp" />
+    <ClCompile Include="src\B2_Helper.cpp" />
+    <ClCompile Include="src\Level.cpp" />
+    <ClCompile Include="src\LevelEntries.cpp" />
     <ClCompile Include="src\Emitter.cpp" />
     <ClCompile Include="src\Game.cpp" />
   </ItemGroup>
@@ -35,6 +37,8 @@
     <ClInclude Include="include\B2_Helper.hpp" />
     <ClInclude Include="include\Emitter.hpp" />
     <ClInclude Include="include\Game.hpp" />
+    <ClInclude Include="include\Level.hpp" />
+    <ClInclude Include="include\LevelEntries.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{e70b2823-8af5-49bd-850b-79897955d413}</ProjectGuid>

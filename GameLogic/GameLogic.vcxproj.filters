@@ -19,8 +19,14 @@
     <ClCompile Include="src\Game.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="B2_Helper.cpp">
-      <Filter>include</Filter>
+    <ClCompile Include="src\LevelEntries.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Level.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\B2_Helper.cpp">
+      <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -31,6 +37,12 @@
       <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\Game.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\LevelEntries.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Level.hpp">
       <Filter>include</Filter>
     </ClInclude>
   </ItemGroup>
