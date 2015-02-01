@@ -50,7 +50,7 @@ Level LevelEntries::LoadLevelOne()
 	particleSystem->SetDensity(DENSITY);
 	particleSystem->SetStrictContactCheck(true);
 
-	CreateStaticBox(0.0f, 8.0f, 3.0f, 7.0f, *world);
+	CreateStaticBox(1.0f, 8.0f, 3.0f, 7.0f, *world);
 	CreateStaticBox(13.0f, 8.0f, 3.0f, 7.0f, *world);
 	CreateStaticBox(0.0f, 14.0f, 16.0, 1.0f, *world);
 
