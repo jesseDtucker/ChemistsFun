@@ -10,9 +10,9 @@ using namespace FluidGame;
 
 const float GRAVITY_SCALE = 1.0f;
 const float DENSITY = 1.0f;
-const int MAX_PARTICLES = 500;
 const float WORLD_MARGIN = 10.0f;
 const float SIZE_OF_WORLD_MARGIN = 1.0f;
+const int MAX_PARTICLES = 0;
 
 b2PolygonShape CreateBoxShape(float width, float height)
 {
