@@ -7,7 +7,10 @@
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	mc:Ignorable="d"
 	KeyDown="KeyDown"
-	KeyUp="KeyUp">
+	KeyUp="KeyUp"
+	PointerMoved="Page_PointerMoved"
+	PointerPressed="Page_PointerPressed"
+	PointerReleased="Page_PointerReleased">
 
   <SwapChainPanel x:Name="swapChainPanel">
 	<TextBlock Text="Hello from XAML!"

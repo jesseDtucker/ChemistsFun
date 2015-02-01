@@ -224,3 +224,20 @@ void ChemistsFun::DirectXPage::KeyUp(Platform::Object^ sender, Windows::UI::Xaml
 {
 	
 }
+
+void ChemistsFun::DirectXPage::Page_PointerMoved(Platform::Object^ sender, Windows::UI::Xaml::Input::PointerRoutedEventArgs^ e)
+{
+	ARC_FAIL("TODO::BLACK");
+}
+
+
+void ChemistsFun::DirectXPage::Page_PointerPressed(Platform::Object^ sender, Windows::UI::Xaml::Input::PointerRoutedEventArgs^ e)
+{
+	ARC_FAIL("TODO::BLACK");
+}
+
+
+void ChemistsFun::DirectXPage::Page_PointerReleased(Platform::Object^ sender, Windows::UI::Xaml::Input::PointerRoutedEventArgs^ e)
+{
+	ARC_FAIL("TODO::BLACK");
+}
