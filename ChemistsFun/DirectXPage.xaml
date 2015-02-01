@@ -8,9 +8,9 @@
 	mc:Ignorable="d"
 	KeyDown="KeyDown"
 	KeyUp="KeyUp"
-	PointerMoved="Page_PointerMoved"
-	PointerPressed="Page_PointerPressed"
-	PointerReleased="Page_PointerReleased">
+	PointerMoved="OnPointerMoved"
+	PointerPressed="OnPointerPressed"
+	PointerReleased="OnPointerReleased">
 
   <SwapChainPanel x:Name="swapChainPanel">
 	<TextBlock Text="Hello from XAML!"
