@@ -166,6 +166,10 @@ void DirectXPage::AppBarButton_Click(Object^ sender, RoutedEventArgs^ e)
 void DirectXPage::OnPointerPressed(Object^ sender, PointerEventArgs^ e)
 {
 	// When the pointer is pressed begin tracking the pointer movement.
+	
+	m_main->GetGame().GetCurrentLevel()->SetDrawingMode(true);
+	
+	
 	auto pointer = e->CurrentPoint;
 	auto context = m_deviceResources->GetD2DDeviceContext();
 	auto width = context->GetSize().width;
@@ -188,6 +192,7 @@ void DirectXPage::OnPointerReleased(Object^ sender, PointerEventArgs^ e)
 {
 	// Stop tracking pointer movement when the pointer is released.
 	m_draggedEmitter = nullptr;
+	m_main->GetGame().GetCurrentLevel()->SetDrawingMode(false);
 }
 
 
