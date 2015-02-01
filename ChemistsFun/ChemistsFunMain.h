@@ -31,6 +31,9 @@ namespace ChemistsFun
 		virtual void OnDeviceLost();
 		virtual void OnDeviceRestored();
 
+		PROP_SET_AND_GET(bool, IsMovingLeft);
+		PROP_SET_AND_GET(bool, IsMovingRight);
+
 	private:
 		void ProcessInput();
 		void Update();

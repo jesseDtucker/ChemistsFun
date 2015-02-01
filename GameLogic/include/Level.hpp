@@ -3,6 +3,7 @@
 #include "B2_Helper.hpp"
 #include "Character.hpp"
 #include "LevelEntries.hpp"
+#include "PropertyHelper.hpp"
 
 namespace FluidGame
 {

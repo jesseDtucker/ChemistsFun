@@ -15,9 +15,9 @@ Emitter::Emitter(b2ParticleSystem* particleSystem, b2Vec2 position)
 void Emitter::Step(float dt)
 {
 	m_count += dt;
-	while (m_count > 0.1f)
+	while (m_count > 1.0f)
 	{
-		m_count -= 0.1f;
+		m_count -= 1.0f;
 		b2ParticleDef particleDef;
 		particleDef.position = m_Position;
 		particleDef.velocity = { 0.01f, 0.01f };
