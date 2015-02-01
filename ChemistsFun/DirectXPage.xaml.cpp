@@ -77,6 +77,9 @@ DirectXPage::DirectXPage():
 		m_coreInput->PointerPressed += ref new TypedEventHandler<Object^, PointerEventArgs^>(this, &DirectXPage::OnPointerPressed);
 		m_coreInput->PointerMoved += ref new TypedEventHandler<Object^, PointerEventArgs^>(this, &DirectXPage::OnPointerMoved);
 		m_coreInput->PointerReleased += ref new TypedEventHandler<Object^, PointerEventArgs^>(this, &DirectXPage::OnPointerReleased);
+		m_coreInput->KeyDown += ref new TypedEventHandler<Object^, KeyEventArgs^>(this, &DirectXPage::OnKeyDown);
+		m_coreInput->KeyUp += ref new TypedEventHandler<Object^, KeyEventArgs^>(this, &DirectXPage::OnKeyUp);
+
 
 		// Begin processing input messages as they're delivered.
 		m_coreInput->Dispatcher->ProcessEvents(CoreProcessEventsOption::ProcessUntilQuit);
@@ -178,6 +181,18 @@ void DirectXPage::OnPointerReleased(Object^ sender, PointerEventArgs^ e)
 {
 	// Stop tracking pointer movement when the pointer is released.
 	
+}
+
+void DirectXPage::OnKeyDown(Object^ sender, KeyEventArgs^ e)
+{
+	// Stop tracking pointer movement when the pointer is released.
+
+}
+
+void DirectXPage::OnKeyUp(Object^ sender, KeyEventArgs^ e)
+{
+	// Stop tracking pointer movement when the pointer is released.
+
 }
 
 void DirectXPage::OnCompositionScaleChanged(SwapChainPanel^ sender, Object^ args)
