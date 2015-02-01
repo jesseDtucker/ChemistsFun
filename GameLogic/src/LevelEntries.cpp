@@ -31,21 +31,21 @@ b2Body* CreateWoodPlatform(WorldPtr world, b2Body* anchor, float width, float x,
 	bodyDef.position = { x, y };
 	auto body = world->CreateBody(&bodyDef);
 
+	auto l = (width - 2.0f * TAIL_SIZE) / 2.0f;
+	
 	b2PolygonShape shape;
 	const b2Vec2 vertices[7] =
 	{
-		{ 0, 0 },
-		{ 0, 0 + height },
-		{ 0 + width, 0 + height },
-		{ 0 + width, 0 },
-		{ 0, 0 },
-		{ 0, 0 },
-		{ 0, 0 },
+		{ 0.0f, 0.0f },
+		{ width, 0.0f },
+		{ width, WOOD_PLATFORM_SIZE },
+		{ l + 2.0f * TAIL_SIZE, WOOD_PLATFORM_SIZE },
+		{ l + TAIL_SIZE, WOOD_PLATFORM_SIZE + TAIL_SIZE },
+		{ l, WOOD_PLATFORM_SIZE },
+		{ 0, WOOD_PLATFORM_SIZE }
 	};
 	shape.Set(vertices, 7);
-	return shape;
 
-	auto shape = CreateBoxShape(width, WOOD_PLATFORM_SIZE);
 	auto fixture = body->CreateFixture(&shape, WOOD_DENSITY);
 
 	auto seperation = x - anchor->GetPosition().x;
