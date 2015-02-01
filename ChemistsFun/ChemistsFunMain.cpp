@@ -79,7 +79,7 @@ void ChemistsFunMain::ProcessInput()
 
 b2Vec2 TransformToLocal(const b2Vec2& vec)
 {
-	return{ vec.x / 100.f + 0.1f, vec.y / 100.f + 0.1f };
+	return vec;
 }
 
 b2AABB GenerateBoundingBox(b2Body& body)
@@ -106,17 +106,17 @@ bool ChemistsFunMain::Render()
 	// Render the scene objects.
 	// TODO: Replace this with your app's content rendering functions.
 	m_Debug2D->Clear();
-	m_Debug2D->DrawCircle(20.5f, 50.5f, 50.1f);
 
 	auto particles = m_game.GetParticlesPositions();
+
 	for (int i = 0; i < particles.first; ++i)
 	{
 		auto particlePos = particles.second[i];
 		auto screenSpaceVec = TransformToLocal(particlePos);
-		m_Debug2D->DrawCircle(screenSpaceVec.x, screenSpaceVec.y, 5.0f);
+		m_Debug2D->DrawCircle(screenSpaceVec.x, screenSpaceVec.y, 0.5f);
 	}
 
-	m_Debug2D->DrawText(L"MY TEXT", 100.0f, 100.0f, 150.0f, 50.0f);
+	// m_Debug2D->DrawText(L"MY TEXT", 2.5f, 10.0f, 10.0f, 2.5f);
 
 	auto& ground = m_game.GetGround();
 	if (ground != nullptr)
@@ -124,7 +124,7 @@ bool ChemistsFunMain::Render()
 		auto boundingBox = GenerateBoundingBox(*ground);
 		auto topLeft = TransformToLocal(boundingBox.upperBound);
 		auto bottomRight = TransformToLocal(boundingBox.lowerBound);
-		m_Debug2D->DrawRectangle(bottomRight.x, topLeft.x, topLeft.y, bottomRight.y);
+		// m_Debug2D->DrawRectangle(bottomRight.x, topLeft.x, topLeft.y, bottomRight.y);
 		m_Debug2D->DrawBody(*ground);
 	}
 

@@ -76,7 +76,7 @@ void Debug2DScene::DrawCircle(float x, float y, float radius)
 	width = (float)context->GetSize().width;
 	height = (float)context->GetSize().height;
 
-	D2D1_ELLIPSE ellipse = D2D1::Ellipse(D2D1::Point2F(x * width, y * height), radius * aspectRatio, radius);
+	D2D1_ELLIPSE ellipse = D2D1::Ellipse(D2D1::Point2F((x / (SCREEN_HEIGHT / aspectRatio)) * width, (y / SCREEN_HEIGHT) * height), (radius / SCREEN_HEIGHT) * height, (radius / SCREEN_HEIGHT) * height);
 
 	context->BeginDraw();
 	context->DrawEllipse(ellipse, activeBrush);
@@ -91,7 +91,7 @@ void Debug2DScene::DrawText(std::wstring text, float box_left, float box_top, fl
 	width = (float)context->GetSize().width;
 	height = (float)context->GetSize().height;
 
-	D2D1_RECT_F textBox = D2D1::RectF(box_left * width, box_top * height, box_right * width, box_bottom * height);
+	D2D1_RECT_F textBox = D2D1::RectF((box_left / (SCREEN_HEIGHT / aspectRatio)) * width, (box_top / SCREEN_HEIGHT) * height, (box_right / (SCREEN_HEIGHT / aspectRatio)) * width, (box_bottom / SCREEN_HEIGHT) * height);
 	IDWriteTextFormat *form;
 	auto hr = factory->CreateTextFormat(L"Arial", NULL, DWRITE_FONT_WEIGHT_REGULAR, DWRITE_FONT_STYLE_NORMAL, DWRITE_FONT_STRETCH_NORMAL, 16.0f, L"en-us", &form);
 
@@ -107,7 +107,7 @@ void Debug2DScene::DrawRectangle(float right, float left, float top, float botto
 	width = (float)context->GetSize().width;
 	height = (float)context->GetSize().height;
 
-	D2D1_RECT_F rectangle = D2D1::RectF(left * width, top * height, right * width, bottom * height);
+	D2D1_RECT_F rectangle = D2D1::RectF((left / (SCREEN_HEIGHT / aspectRatio)) * width, (top / SCREEN_HEIGHT) * height, (right / (SCREEN_HEIGHT / aspectRatio)) * width, (bottom / SCREEN_HEIGHT) * height);
 
 	context->BeginDraw();
 	context->DrawRectangle(rectangle, activeBrush);
@@ -128,10 +128,10 @@ void Debug2DScene::DrawPolygon(b2PolygonShape *polygon, int32 edges)
 
 	for (int e(1); e <= edges; ++e)
 	{
-		point0.x = (polygon->GetVertex(e - 1).x / (15 / aspectRatio)) * width;
-		point0.y = (polygon->GetVertex(e - 1).y / 15) * height;
-		point1.x = (polygon->GetVertex(e).x / (15 / aspectRatio)) * width;
-		point1.y = (polygon->GetVertex(e).y / 15) * height;
+		point0.x = (polygon->GetVertex(e - 1).x / (SCREEN_HEIGHT / aspectRatio)) * width;
+		point0.y = (polygon->GetVertex(e - 1).y / SCREEN_HEIGHT) * height;
+		point1.x = (polygon->GetVertex(e).x / (SCREEN_HEIGHT / aspectRatio)) * width;
+		point1.y = (polygon->GetVertex(e).y / SCREEN_HEIGHT) * height;
 
 		context->DrawLine(point0, point1, activeBrush);
 	}
@@ -150,10 +150,10 @@ void Debug2DScene::DrawEdge(b2EdgeShape *edge)
 	D2D1_POINT_2F point1 = { 0, 0 };
 
 	context->BeginDraw();
-	point0.x = (edge->m_vertex1.x / (15 / aspectRatio)) * width;
-	point0.y = (edge->m_vertex1.y / 15) * height;
-	point1.x = (edge->m_vertex2.x / (15 / aspectRatio)) * width;
-	point1.y = (edge->m_vertex2.y / 15) * height;
+	point0.x = (edge->m_vertex1.x / (SCREEN_HEIGHT / aspectRatio)) * width;
+	point0.y = (edge->m_vertex1.y / SCREEN_HEIGHT) * height;
+	point1.x = (edge->m_vertex2.x / (SCREEN_HEIGHT / aspectRatio)) * width;
+	point1.y = (edge->m_vertex2.y / SCREEN_HEIGHT) * height;
 	context->DrawLine(point0, point1, activeBrush);
 	context->EndDraw();
 }
@@ -170,7 +170,7 @@ void Debug2DScene::DrawBody(b2Body &body)
 		{
 		case(b2Shape::e_circle) : {
 			auto drawTarget = dynamic_cast<b2CircleShape *>(shape);
-			DrawCircle(drawTarget->GetPositionX() / (15 / aspectRatio), drawTarget->GetPositionY() / 15, drawTarget->m_radius / 15);
+			DrawCircle(drawTarget->GetPositionX() / (SCREEN_HEIGHT / aspectRatio), drawTarget->GetPositionY() / SCREEN_HEIGHT, drawTarget->m_radius / SCREEN_HEIGHT);
 			break;
 		}
 		case(b2Shape::e_polygon) : {

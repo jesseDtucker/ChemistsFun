@@ -16,9 +16,9 @@ const int VELOCITY_ITERATIONS = 8;
 const int POSITION_ITERATIONS = 3;
 const int PARTICLE_ITERATIONS = 3;
 
-const float WIDTH = 50.0f;
-const float HEIGHT = 30.0f;
-const float EDGE_WIDTH = 2.0f;
+const float WIDTH = 10.0f;
+const float HEIGHT = 10.0f;
+const float EDGE_WIDTH = 0.5f;
 
 Game::Game()
 	: m_world(make_unique<b2World>(b2Vec2 {0.0f, 9.81f}))
@@ -43,10 +43,10 @@ void CreateBounds(b2Body& ground)
 		b2PolygonShape shape;
 		// left edge
 		const b2Vec2 vertices[4] = {
-			b2Vec2(-EDGE_WIDTH, 0),
-			b2Vec2(0, 0),
-			b2Vec2(0, HEIGHT),
-			b2Vec2(-EDGE_WIDTH, HEIGHT) };
+			b2Vec2(1.0-EDGE_WIDTH, 1.0),
+			b2Vec2(1.0, 1.0),
+			b2Vec2(1.0, HEIGHT),
+			b2Vec2(1.0-EDGE_WIDTH, HEIGHT) };
 		shape.Set(vertices, 4);
 		ground.CreateFixture(&shape, 0.0f);
 	}
@@ -57,7 +57,7 @@ void CreateBounds(b2Body& ground)
 			b2Vec2(0, HEIGHT),
 			b2Vec2(WIDTH, HEIGHT),
 			b2Vec2(WIDTH, HEIGHT + EDGE_WIDTH),
-			b2Vec2(0, HEIGHT + EDGE_WIDTH) };
+			b2Vec2(1.0, HEIGHT + EDGE_WIDTH) };
 		shape.Set(vertices, 4);
 		ground.CreateFixture(&shape, 0.0f);
 	}
@@ -65,8 +65,8 @@ void CreateBounds(b2Body& ground)
 	{
 		b2PolygonShape shape;
 		const b2Vec2 vertices[4] = {
-			b2Vec2(WIDTH, 0),
-			b2Vec2(WIDTH + EDGE_WIDTH, 0),
+			b2Vec2(WIDTH, 1.0),
+			b2Vec2(WIDTH + EDGE_WIDTH, 1.0),
 			b2Vec2(WIDTH + EDGE_WIDTH, HEIGHT),
 			b2Vec2(WIDTH, HEIGHT) };
 		shape.Set(vertices, 4);
