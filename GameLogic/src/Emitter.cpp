@@ -25,3 +25,8 @@ void Emitter::Step(float dt)
 		m_particleIds.push_back(id);
 	}
 }
+
+bool FluidGame::Emitter::operator==(const Emitter rhs)
+{
+	return rhs.m_particleIds == m_particleIds;
+}

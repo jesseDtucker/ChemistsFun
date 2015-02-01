@@ -108,21 +108,13 @@ std::shared_ptr<Level> LevelEntries::LoadLevelOne(float particleRadius)
 	CreateStaticBox(13.0f, 8.0f, 3.0f, 7.0f, *world);
 	CreateStaticBox(1.0f, 14.0f, 16.0, 1.0f, *world);
 
-	auto emitter = CreateEmitter(12.0f, 9.0f, particleSystem);
+	//auto emitter = CreateEmitter(12.0f, 9.0f, particleSystem);
 	CreateWoodPlatform(world, leftBlock, 3.0f, 7.0f, 10.0f);
 
 	// TODO::JT create a player and start/end points
 
 	auto result = make_shared<Level>(world, particleSystem);
-	result->GetMutableEmitters().push_back(emitter);
-
-	if (result->emitterPresent)
-	{
-		auto emitter = CreateEmitter(result->emitterX, result->emitterX, particleSystem);
-		auto testx = result->emitterX;
-		auto testy = result->emitterY;
-		result->GetMutableEmitters().push_back(emitter);
-	}
+	//result->GetMutableEmitters().push_back(emitter);
 
 	result->SetKillBoxes(CreateKillBox(world));
 

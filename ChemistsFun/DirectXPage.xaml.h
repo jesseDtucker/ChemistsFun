@@ -25,6 +25,9 @@ namespace ChemistsFun
 		void LoadInternalState(Windows::Foundation::Collections::IPropertySet^ state);
 
 	private:
+
+		std::shared_ptr<FluidGame::Emitter> m_draggedEmitter;
+
 		// XAML low-level rendering event handler.
 		void OnRendering(Platform::Object^ sender, Platform::Object^ args);
 

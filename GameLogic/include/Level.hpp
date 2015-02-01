@@ -15,18 +15,12 @@ namespace FluidGame
 
 		PROP_GET(WorldPtr, World);
 		PROP_GET(ParticleSystemPtr, ParticleSystem);
-		PROP_SET_AND_GET(std::vector<Emitter>, Emitters);
+		PROP_SET_AND_GET(std::vector<std::shared_ptr<Emitter>>, Emitters);
 		PROP_SET_AND_GET(std::vector<std::pair<b2Transform COMMA b2PolygonShape>>, KillBoxes);
 		PROP_SET_AND_GET(std::shared_ptr<Character>, MainCharacter);
 		// TODO::JT add character???
-		
-		bool emitterPresent;
-		float emitterX;
-		float emitterY;
 
-		void EmitterPos(float x, float y) { emitterX = x; emitterY = y; }
-		void EmitterOn() { emitterPresent = true; }
-		void EmitterOff() { emitterPresent = false; }
+		std::shared_ptr<Emitter> CreateEmitter(float x, float y);
 
 		void Step(float dt);
 

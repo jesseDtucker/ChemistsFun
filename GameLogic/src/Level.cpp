@@ -19,12 +19,9 @@ void Level::Step(float dt)
 {
 	m_World->Step(dt, VELOCITY_ITERATIONS, POSITION_ITERATIONS, PARTICLE_ITERATIONS);
 
-	if (emitterPresent)
+	for (auto& emitter : m_Emitters)
 	{
-		for (auto& emitter : m_Emitters)
-		{
-			emitter.Step(dt);
-		}
+		emitter->Step(dt);
 	}
 	m_MainCharacter->Step(dt);
 
@@ -44,4 +41,18 @@ void Level::Step(float dt)
 		// character is considered to have fallen off the world
 		m_MainCharacter->Kill();
 	}
+}
+
+std::shared_ptr<Emitter> FluidGame::Level::CreateEmitter(float x, float y)
+{
+	std::shared_ptr<Emitter> emitter = make_shared<Emitter>(m_ParticleSystem.get(), b2Vec2{ x, y });
+	m_Emitters.push_back(emitter);
+	std::shared_ptr<Emitter> result{ emitter.get(), [this, emitter](Emitter* unused)
+	{
+		auto initialCount = m_Emitters.size();
+		auto pEnd = remove(begin(m_Emitters), end(m_Emitters), emitter);
+		m_Emitters.resize(pEnd - begin(m_Emitters));
+		ARC_ASSERT(initialCount - 1 == m_Emitters.size());
+	} };
+	return result;
 }

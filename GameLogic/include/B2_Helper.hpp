@@ -23,5 +23,5 @@ namespace FluidGame
 
 	b2PolygonShape CreateBoxShape(float width, float height);
 	b2Body* CreateStaticBox(float x, float y, float width, float height, b2World& world);
-	Emitter CreateEmitter(float x, float y, ParticleSystemPtr particleSystem);
+	std::shared_ptr<Emitter> CreateEmitter(float x, float y, ParticleSystemPtr particleSystem);
 }

@@ -1,6 +1,9 @@
+#include <memory>
+
 #include "B2_Helper.hpp"
 #include "Emitter.hpp"
 
+using namespace std;
 using namespace FluidGame;
 
 b2PolygonShape FluidGame::CreateBoxShape(float width, float height)
@@ -29,9 +32,9 @@ b2Body* FluidGame::CreateStaticBox(float x, float y, float width, float height, 
 	return body;
 }
 
-Emitter FluidGame::CreateEmitter(float x, float y, ParticleSystemPtr particleSystem)
+std::shared_ptr<Emitter> FluidGame::CreateEmitter(float x, float y, ParticleSystemPtr particleSystem)
 {
-	return{ particleSystem.get(), { x, y } };
+	return make_shared<Emitter>(particleSystem.get(), b2Vec2{ x, y });
 }
 
 FluidGame::ParticleSystemPtr FluidGame::WrapB2Resource(b2World* world, b2ParticleSystem* res)

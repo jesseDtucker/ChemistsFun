@@ -12,6 +12,7 @@ namespace FluidGame
 	{
 	public:
 		Emitter(b2ParticleSystem* particleSystem, b2Vec2 position);
+		bool operator==(const Emitter rhs);
 
 		void Step(float dt);
 		PROP_GET(b2Vec2, Position);
