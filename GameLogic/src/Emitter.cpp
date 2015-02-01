@@ -21,7 +21,7 @@ void Emitter::Step(float dt)
 		b2ParticleDef particleDef;
 		particleDef.color = b2Color(0.0f, 0.0f, 1.0f);
 		particleDef.position = m_Position;
-		particleDef.velocity = { 0.01f, 0.05f };
+		particleDef.velocity = { 0.01f, 0.5f };
 		auto id = m_particleSystem->CreateParticle(particleDef);
 		m_particleIds.push_back(id);
 	}
