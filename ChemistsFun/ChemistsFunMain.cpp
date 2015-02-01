@@ -112,7 +112,7 @@ void DrawParticles(ParticleSystemPtr particleSystem, Debug2DScene& debugScene)
 	{
 		auto particlePos = particlePositions[i];
 		auto screenSpaceVec = TransformToLocal(particlePos);
-		debugScene.DrawCircle(screenSpaceVec.x, screenSpaceVec.y, .50f);
+		debugScene.DrawCircle(screenSpaceVec.x, screenSpaceVec.y, 0.15f);
 	}
 }
 
