@@ -22,6 +22,7 @@ void Level::Step(float dt)
 	{
 		emitter.Step(dt);
 	}
+	m_MainCharacter->Step(dt);
 
 	int destroyed = 0;
 

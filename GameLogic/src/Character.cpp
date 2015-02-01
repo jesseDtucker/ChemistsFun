@@ -8,8 +8,10 @@ const float CHAR_HEIGHT = 0.7f;
 
 const float GRAVITY_SCALE = 4.25f;
 const float FRICTION = 1.5f;
+const int MAX_JUMPS = 1; // character can jump twice, ie. double jump
 
 FluidGame::Character::Character(b2Vec2 position, WorldPtr world)
+	: m_jumpsLeft(MAX_JUMPS)
 {
 	b2BodyDef bodyDef;
 	bodyDef.fixedRotation = true;
@@ -25,10 +27,21 @@ FluidGame::Character::Character(b2Vec2 position, WorldPtr world)
 	m_Body = WrapB2Resource(world.get(), body);
 }
 
+void FluidGame::Character::Step(float dt)
+{
+	auto contactList = m_Body->GetContactList();
+	m_jumpsLeft = contactList != nullptr ? MAX_JUMPS : m_jumpsLeft;
+
+}
+
 void FluidGame::Character::Jump()
 {
-	auto currentVelocity = m_Body->GetLinearVelocity();
-	m_Body->SetLinearVelocity({ currentVelocity.x, -JUMP_SPEED });
+	if (m_jumpsLeft > 0)
+	{
+		auto currentVelocity = m_Body->GetLinearVelocity();
+		m_Body->SetLinearVelocity({ currentVelocity.x, -JUMP_SPEED });
+		--m_jumpsLeft;
+	}
 }
 
 void FluidGame::Character::MoveRight()
