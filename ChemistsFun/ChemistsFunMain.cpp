@@ -2,6 +2,7 @@
 #include "ChemistsFunMain.h"
 #include "Common\DirectXHelper.h"
 
+using namespace std;
 using namespace ChemistsFun;
 using namespace Windows::Foundation;
 using namespace Windows::System::Threading;
@@ -14,15 +15,7 @@ ChemistsFunMain::ChemistsFunMain(const std::shared_ptr<DX::DeviceResources>& dev
 	// Register to be notified if the Device is lost or recreated
 	m_deviceResources->RegisterDeviceNotify(this);
 
-	// TODO: Replace this with your app's content initialization.
-	m_Debug2D = std::unique_ptr<Debug2DScene>(new Debug2DScene(m_deviceResources));
-
-	// TODO: Change the timer settings if you want something other than the default variable timestep mode.
-	// e.g. for 60 FPS fixed timestep update logic, call:
-	/*
-	m_timer.SetFixedTimeStep(true);
-	m_timer.SetTargetElapsedSeconds(1.0 / 60);
-	*/
+	m_Debug2D = make_unique<Debug2DScene>(m_deviceResources);
 }
 
 ChemistsFunMain::~ChemistsFunMain()
@@ -73,6 +66,7 @@ void ChemistsFunMain::StopRenderLoop()
 void ChemistsFunMain::Update() 
 {
 	ProcessInput();
+	Render();
 }
 
 // Process all input from the user before updating game state
@@ -85,29 +79,14 @@ void ChemistsFunMain::ProcessInput()
 // Returns true if the frame was rendered and is ready to be displayed.
 bool ChemistsFunMain::Render() 
 {
-	// Don't try to render anything before the first Update.
-	if (m_timer.GetFrameCount() == 0)
-	{
-		return false;
-	}
+	auto context = m_deviceResources->GetD2DDeviceContext();
 
-	auto context = m_deviceResources->GetD3DDeviceContext();
-
-	// Reset the viewport to target the whole screen.
-	auto viewport = m_deviceResources->GetScreenViewport();
-	context->RSSetViewports(1, &viewport);
-
-	// Reset render targets to the screen.
-	ID3D11RenderTargetView *const targets[1] = { m_deviceResources->GetBackBufferRenderTargetView() };
-	context->OMSetRenderTargets(1, targets, m_deviceResources->GetDepthStencilView());
-
-	// Clear the back buffer and depth stencil view.
-	context->ClearRenderTargetView(m_deviceResources->GetBackBufferRenderTargetView(), DirectX::Colors::CornflowerBlue);
-	context->ClearDepthStencilView(m_deviceResources->GetDepthStencilView(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
+	
 
 	// Render the scene objects.
 	// TODO: Replace this with your app's content rendering functions.
-	m_Debug2D->DrawCircle(0.5f, 0.5f, 0.1f);
+	m_Debug2D->Clear();
+	m_Debug2D->DrawCircle(20.5f, 50.5f, 50.1f);
 
 	return true;
 }
@@ -115,14 +94,12 @@ bool ChemistsFunMain::Render()
 // Notifies renderers that device resources need to be released.
 void ChemistsFunMain::OnDeviceLost()
 {
-	m_sceneRenderer->ReleaseDeviceDependentResources();
 	m_fpsTextRenderer->ReleaseDeviceDependentResources();
 }
 
 // Notifies renderers that device resources may now be recreated.
 void ChemistsFunMain::OnDeviceRestored()
 {
-	m_sceneRenderer->CreateDeviceDependentResources();
 	m_fpsTextRenderer->CreateDeviceDependentResources();
 	CreateWindowSizeDependentResources();
 }
