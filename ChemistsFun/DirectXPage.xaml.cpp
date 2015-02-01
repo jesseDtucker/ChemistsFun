@@ -28,6 +28,8 @@ DirectXPage::DirectXPage()
 	: m_windowVisible(true)
 	, m_coreInput(nullptr)
 	, m_draggedEmitter(nullptr)
+	, m_width(0.0f)
+	, m_height(0.0f)
 {
 	InitializeComponent();
 
@@ -172,20 +174,34 @@ void DirectXPage::OnPointerPressed(Object^ sender, PointerEventArgs^ e)
 	
 	auto pointer = e->CurrentPoint;
 	auto context = m_deviceResources->GetD2DDeviceContext();
-	auto width = context->GetSize().width;
-	auto height = context->GetSize().height;
-	auto AR = width / height;
+	m_width = context->GetSize().width;
+	m_height = context->GetSize().height;
+	auto AR = m_width / m_height;
 
 	float x = pointer->Position.X;
 	float y = pointer->Position.Y;
 
-	m_draggedEmitter = m_main->GetGame().GetCurrentLevel()->CreateEmitter((x / width) * (SCREEN_HEIGHT * AR), (y / height) * SCREEN_HEIGHT);
+	x = (x / m_width) * (SCREEN_HEIGHT * AR);
+	y = (y / m_height) * SCREEN_HEIGHT;
+
+	m_draggedEmitter = m_main->GetGame().GetCurrentLevel()->CreateEmitter(x, y);
 }
 
 void DirectXPage::OnPointerMoved(Object^ sender, PointerEventArgs^ e)
 {
-	// Update the pointer tracking code.
-	
+	if (m_draggedEmitter != nullptr)
+	{
+		auto pointer = e->CurrentPoint;
+		auto AR = m_width / m_height;
+
+		float x = pointer->Position.X;
+		float y = pointer->Position.Y;
+
+		x = (x / m_width) * (SCREEN_HEIGHT * AR);
+		y = (y / m_height) * SCREEN_HEIGHT;
+
+		m_draggedEmitter->SetPosition({ x, y });
+	}
 }
 
 void DirectXPage::OnPointerReleased(Object^ sender, PointerEventArgs^ e)

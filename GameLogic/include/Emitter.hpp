@@ -14,7 +14,7 @@ namespace FluidGame
 	public:
 		Emitter(b2ParticleSystem* particleSystem, 
 				b2Vec2 position, 
-				float particlesPerSecond = 0.5f,
+				float particlesPerSecond = 50.0f,
 				b2Vec2 velocityMin = { 0.0f, 0.0f },
 				b2Vec2 velocityMax = { 1.0f, 1.0f } );
 		bool operator==(const Emitter rhs);
