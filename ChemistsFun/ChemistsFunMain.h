@@ -15,10 +15,7 @@ namespace ChemistsFun
 		ChemistsFunMain(const std::shared_ptr<DX::DeviceResources>& deviceResources);
 		~ChemistsFunMain();
 		void CreateWindowSizeDependentResources();
-		void StartTracking() { m_sceneRenderer->StartTracking(); }
 		void TrackingUpdate(float positionX) { m_pointerLocationX = positionX; }
-		void StopTracking() { m_sceneRenderer->StopTracking(); }
-		bool IsTracking() { return m_sceneRenderer->IsTracking(); }
 		void StartRenderLoop();
 		void StopRenderLoop();
 		Concurrency::critical_section& GetCriticalSection() { return m_criticalSection; }
@@ -36,7 +33,6 @@ namespace ChemistsFun
 		std::shared_ptr<DX::DeviceResources> m_deviceResources;
 
 		// TODO: Replace with your own content renderers.
-		std::unique_ptr<Sample3DSceneRenderer> m_sceneRenderer;
 		std::unique_ptr<SampleFpsTextRenderer> m_fpsTextRenderer;
 		std::unique_ptr<Debug2DScene> m_Debug2D;
 

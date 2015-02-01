@@ -18,6 +18,7 @@ namespace ChemistsFun
 	public:
 		Debug2DScene(const std::shared_ptr<DX::DeviceResources>& deviceResources);
 		void DrawCircle(float x, float y, float radius);
+		void Clear();
 
 	private:
 		// Cached pointer to device resources.

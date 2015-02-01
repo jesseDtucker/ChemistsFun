@@ -1,3 +1,4 @@
+height
 #include "pch.h"
 #include "Debug2DScene.h"
 
@@ -20,9 +21,22 @@ void Debug2DScene::DrawCircle(float x, float y, float radius)
 {
 	auto context = m_deviceResources->GetD2DDeviceContext();
 
+	auto width = context->GetSize().width;
+	auto height = context->GetSize().height;
+
 	D2D1_ELLIPSE ellipse = D2D1::Ellipse(D2D1::Point2F(x, y), radius, radius);
 	ID2D1SolidColorBrush *black;
 	auto hr = context->CreateSolidColorBrush(D2D1::ColorF(D2D1::ColorF::Yellow), &black);
 
+	context->BeginDraw();
 	context->DrawEllipse(ellipse, black);
+	context->EndDraw();
+}
+
+void ChemistsFun::Debug2DScene::Clear()
+{
+	auto context = m_deviceResources->GetD2DDeviceContext();
+	context->BeginDraw();
+	context->Clear(D2D1::ColorF(D2D1::ColorF::Pink));
+	context->EndDraw();
 }
