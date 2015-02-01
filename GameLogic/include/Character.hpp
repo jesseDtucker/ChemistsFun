@@ -8,9 +8,9 @@ namespace FluidGame
 	class Character
 	{
 	public:
-		Character(b2Vec2 position, WorldPtr world);
+		Character(b2Vec2 position, b2World* world);
 
-		PROP_GET(BodyPtr, Body);
+		b2Body* GetBody();
 		void Step(float dt);
 		void MoveLeft();
 		void MoveRight();
@@ -19,5 +19,6 @@ namespace FluidGame
 	private:
 		int m_jumpsLeft;
 		b2Vec2 m_startPos;
+		b2Body* m_body;
 	};
 }
