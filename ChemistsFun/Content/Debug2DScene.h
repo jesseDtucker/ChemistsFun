@@ -34,7 +34,6 @@ namespace ChemistsFun
 		void GreenBrush();
 
 		void DrawCircle(float x, float y, float radius);
-		void DrawFilledCircle(float x, float y, float radius);
 		void DrawText(std::wstring input, float box_left, float box_top, float box_right, float box_bottom);
 		void DrawRectangle(float right, float left, float top, float bottom);
 		void DrawPolygon(b2PolygonShape *polygon, int32 edges, b2Vec2 bodyPos);
