@@ -169,18 +169,30 @@ void DirectXPage::OnPointerPressed(Object^ sender, PointerEventArgs^ e)
 
 	float x = pointer->Position.X;
 	float y = pointer->Position.Y;
+
+	m_main->TrackingUpdate(x, y);
+	m_main->TrackingOn();
 }
 
 void DirectXPage::OnPointerMoved(Object^ sender, PointerEventArgs^ e)
 {
 	// Update the pointer tracking code.
-	
+	if (m_main->IsTracking())
+	{
+		auto pointer = e->CurrentPoint;
+
+		float x = pointer->Position.X;
+		float y = pointer->Position.Y;
+
+		m_main->TrackingUpdate(x, y);
+	}
 }
 
 void DirectXPage::OnPointerReleased(Object^ sender, PointerEventArgs^ e)
 {
 	// Stop tracking pointer movement when the pointer is released.
-	
+	m_main->TrackingUpdate(0.0f, 0.0f);
+	m_main->TrackingOff();
 }
 
 
