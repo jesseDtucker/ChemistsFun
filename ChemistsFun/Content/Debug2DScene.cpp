@@ -26,3 +26,16 @@ void Debug2DScene::DrawCircle(float x, float y, float radius)
 
 	context->DrawEllipse(ellipse, black);
 }
+
+void DrawText();
+
+void Debug2DScene::DrawRectangle(float right, float left, float top, float bottom)
+{
+	auto context = m_deviceResources->GetD2DDeviceContext();
+
+	D2D1_RECT_F rectangle = D2D1::RectF(left, top, right, bottom);
+	ID2D1SolidColorBrush *black;
+	auto hr = context->CreateSolidColorBrush(D2D1::ColorF(D2D1::ColorF::Yellow), &black);
+
+	context->DrawRectangle(rectangle, &black);
+}
