@@ -107,7 +107,7 @@ b2AABB GenerateBoundingBox(b2Body& body)
 	return result;
 }
 
-void DrawParticles(ParticleSystemPtr particleSystem, Debug2DScene& debugScene)
+void DrawParticles(b2ParticleSystem* particleSystem, Debug2DScene& debugScene)
 {
 	debugScene.BlueBrush();
 	auto particlePositions = particleSystem->GetPositionBuffer();

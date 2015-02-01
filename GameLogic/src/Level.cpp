@@ -8,12 +8,15 @@ const int VELOCITY_ITERATIONS = 8;
 const int POSITION_ITERATIONS = 3;
 const int PARTICLE_ITERATIONS = 3;
 
-Level::Level(b2World world, b2ParticleSystem particleSystem)
-	: m_World(world)
-	, m_ParticleSystem(particleSystem)
-{
 
+Level::Level(WorldPtr world, b2ParticleSystem* particleSystem)
+	: m_particleSystem(particleSystem)
+	, m_MainCharacter(nullptr)
+	, m_World(world)
+{
+	
 }
+
 
 void Level::Step(float dt)
 {
@@ -31,7 +34,7 @@ void Level::Step(float dt)
 	float lowestPoint = -FLT_MAX;
 	for (auto& killBox : m_KillBoxes)
 	{
-		m_ParticleSystem->DestroyParticlesInShape(killBox.second, killBox.first);
+		m_particleSystem->DestroyParticlesInShape(killBox.second, killBox.first);
 		lowestPoint = std::max(lowestPoint, killBox.first.p.y);
 	}
 
@@ -45,7 +48,7 @@ void Level::Step(float dt)
 
 std::shared_ptr<Emitter> FluidGame::Level::CreateEmitter(float x, float y)
 {
-	std::shared_ptr<Emitter> emitter = make_shared<Emitter>(m_ParticleSystem.get(), b2Vec2{ x, y });
+	std::shared_ptr<Emitter> emitter = make_shared<Emitter>(m_particleSystem, b2Vec2{ x, y });
 	m_Emitters.push_back(emitter);
 	std::shared_ptr<Emitter> result{ emitter.get(), [this, emitter](Emitter* unused)
 	{
@@ -55,4 +58,9 @@ std::shared_ptr<Emitter> FluidGame::Level::CreateEmitter(float x, float y)
 		ARC_ASSERT(initialCount - 1 == m_Emitters.size());
 	} };
 	return result;
+}
+
+b2ParticleSystem* FluidGame::Level::GetParticleSystem()
+{
+	return m_particleSystem;
 }
