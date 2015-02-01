@@ -197,11 +197,7 @@ void DirectXPage::OnPointerMoved(Object^ sender, PointerEventArgs^ e)
 		float x = pointer->Position.X;
 		float y = pointer->Position.Y;
 
-<<<<<<< HEAD
 		x = (x / m_width) * SCREEN_HEIGHT;
-=======
-		x = (x / m_width) * (SCREEN_HEIGHT);
->>>>>>> c70e87649384a308abaffbb875b03035098b2116
 		y = (y / m_height) * SCREEN_HEIGHT;
 
 		m_draggedEmitter->SetPosition({ x, y });

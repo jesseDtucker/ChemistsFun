@@ -29,6 +29,9 @@ namespace ChemistsFun
 		void BlackBrush();
 		void WhiteBrush();
 		void BlueBrush();
+		void BlueBrush2();
+		void BlueBrush3();
+		void BlueBrush4();
 		void RedBrush();
 		void YellowBrush();
 		void GreenBrush();
@@ -56,6 +59,9 @@ namespace ChemistsFun
 		ID2D1SolidColorBrush *black;
 		ID2D1SolidColorBrush *white;
 		ID2D1SolidColorBrush *blue;
+		ID2D1SolidColorBrush *blue2;
+		ID2D1SolidColorBrush *blue3;
+		ID2D1SolidColorBrush *blue4;
 		ID2D1SolidColorBrush *red;
 		ID2D1SolidColorBrush *yellow;
 		ID2D1SolidColorBrush *green;
