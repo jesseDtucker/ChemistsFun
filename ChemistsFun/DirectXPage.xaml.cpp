@@ -73,13 +73,14 @@ DirectXPage::DirectXPage():
 			Windows::UI::Core::CoreInputDeviceTypes::Pen
 			);
 
+		auto coreWind = Windows::ApplicationModel::Core::CoreApplication::MainView->CoreWindow;
+
 		// Register for pointer events, which will be raised on the background thread.
 		m_coreInput->PointerPressed += ref new TypedEventHandler<Object^, PointerEventArgs^>(this, &DirectXPage::OnPointerPressed);
 		m_coreInput->PointerMoved += ref new TypedEventHandler<Object^, PointerEventArgs^>(this, &DirectXPage::OnPointerMoved);
 		m_coreInput->PointerReleased += ref new TypedEventHandler<Object^, PointerEventArgs^>(this, &DirectXPage::OnPointerReleased);
-		m_coreInput->KeyDown += ref new TypedEventHandler<Object^, KeyEventArgs^>(this, &DirectXPage::OnKeyDown);
-		m_coreInput->KeyUp += ref new TypedEventHandler<Object^, KeyEventArgs^>(this, &DirectXPage::OnKeyUp);
-
+		coreWind->KeyDown += ref new TypedEventHandler<CoreWindow^, KeyEventArgs^>(this, &DirectXPage::OnKeyDown);
+		coreWind->KeyUp += ref new TypedEventHandler<CoreWindow^, KeyEventArgs^>(this, &DirectXPage::OnKeyUp);
 
 		// Begin processing input messages as they're delivered.
 		m_coreInput->Dispatcher->ProcessEvents(CoreProcessEventsOption::ProcessUntilQuit);
@@ -183,13 +184,13 @@ void DirectXPage::OnPointerReleased(Object^ sender, PointerEventArgs^ e)
 	
 }
 
-void DirectXPage::OnKeyDown(Object^ sender, KeyEventArgs^ e)
+void DirectXPage::OnKeyDown(CoreWindow^ sender, KeyEventArgs^ e)
 {
 	// Stop tracking pointer movement when the pointer is released.
 
 }
 
-void DirectXPage::OnKeyUp(Object^ sender, KeyEventArgs^ e)
+void DirectXPage::OnKeyUp(CoreWindow^ sender, KeyEventArgs^ e)
 {
 	// Stop tracking pointer movement when the pointer is released.
 

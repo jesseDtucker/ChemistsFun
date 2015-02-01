@@ -49,8 +49,8 @@ namespace ChemistsFun
 		void OnPointerPressed(Platform::Object^ sender, Windows::UI::Core::PointerEventArgs^ e);
 		void OnPointerMoved(Platform::Object^ sender, Windows::UI::Core::PointerEventArgs^ e);
 		void OnPointerReleased(Platform::Object^ sender, Windows::UI::Core::PointerEventArgs^ e);
-		void OnKeyDown(Object^ sender, KeyEventArgs^ e);
-		void OnKeyUp(Object^ sender, KeyEventArgs^ e);
+		void OnKeyDown(Windows::UI::Core::CoreWindow^ sender, Windows::UI::Core::KeyEventArgs^ e);
+		void OnKeyUp(Windows::UI::Core::CoreWindow^ sender, Windows::UI::Core::KeyEventArgs^ e);
 		
 		// Resources used to render the DirectX content in the XAML page background.
 		std::shared_ptr<DX::DeviceResources> m_deviceResources;

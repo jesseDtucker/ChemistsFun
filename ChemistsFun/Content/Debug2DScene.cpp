@@ -118,6 +118,8 @@ void Debug2DScene::DrawPolygon(b2PolygonShape *polygon, int32 edges)
 {
 	auto context = m_deviceResources->GetD2DDeviceContext();
 
+	width = Windows::ApplicationModel::Core::CoreApplication::MainView->CoreWindow->Bounds.Width;
+
 	width = (float)context->GetSize().width;
 	height = (float)context->GetSize().height;
 
