@@ -166,13 +166,12 @@ void DirectXPage::AppBarButton_Click(Object^ sender, RoutedEventArgs^ e)
 void DirectXPage::OnPointerPressed(Object^ sender, PointerEventArgs^ e)
 {
 	// When the pointer is pressed begin tracking the pointer movement.
-	auto context = m_deviceResources->GetD2DDeviceContext();
 	auto pointer = e->CurrentPoint;
 
 	float x = pointer->Position.X;
 	float y = pointer->Position.Y;
 
-	m_draggedEmitter = m_main->GetGame().GetCurrentLevel()->CreateEmitter((x / context->GetSize().width) * (SCREEN_HEIGHT * (context->GetSize().width / context->GetSize().height)), (y / context->GetSize().height) * SCREEN_HEIGHT);
+	m_draggedEmitter = m_main->GetGame().GetCurrentLevel()->CreateEmitter(x, y);
 }
 
 void DirectXPage::OnPointerMoved(Object^ sender, PointerEventArgs^ e)
