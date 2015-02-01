@@ -18,9 +18,6 @@ Debug2DScene::Debug2DScene(const std::shared_ptr<DX::DeviceResources>& deviceRes
 	MakeBrushes();
 	activeBrush = black;
 
-	width = context->GetSize().width;
-	height = context->GetSize().height;
-
 	aspectRatio = width / height;
 }
 
@@ -69,6 +66,10 @@ void Debug2DScene::GreenBrush()
 void Debug2DScene::DrawCircle(float x, float y, float radius)
 {
 	auto context = m_deviceResources->GetD2DDeviceContext();
+
+	width = (float)context->GetSize().width;
+	height = (float)context->GetSize().height;
+
 	D2D1_ELLIPSE ellipse = D2D1::Ellipse(D2D1::Point2F(x * width, y * height), radius * aspectRatio, radius);
 
 	context->BeginDraw();
@@ -80,6 +81,9 @@ void Debug2DScene::DrawText(std::wstring text, float box_left, float box_top, fl
 {
 	auto context = m_deviceResources->GetD2DDeviceContext();
 	auto factory = m_deviceResources->GetDWriteFactory();
+
+	width = (float)context->GetSize().width;
+	height = (float)context->GetSize().height;
 
 	D2D1_RECT_F textBox = D2D1::RectF(box_left * width, box_top * height, box_right * width, box_bottom * height);
 	IDWriteTextFormat *form;
@@ -93,6 +97,9 @@ void Debug2DScene::DrawText(std::wstring text, float box_left, float box_top, fl
 void Debug2DScene::DrawRectangle(float right, float left, float top, float bottom)
 {
 	auto context = m_deviceResources->GetD2DDeviceContext();
+
+	width = (float)context->GetSize().width;
+	height = (float)context->GetSize().height;
 
 	D2D1_RECT_F rectangle = D2D1::RectF(left * width, top * height, right * width, bottom * height);
 
