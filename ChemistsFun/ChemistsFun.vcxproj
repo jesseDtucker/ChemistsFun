@@ -216,8 +216,16 @@
   <ItemGroup>
     <Image Include="Assets\Logo.png" />
     <Image Include="Assets\SmallLogo.png" />
+    <Image Include="Assets\SplashScreen.scale-180.png">
+      <DeploymentContent>true</DeploymentContent>
+    </Image>
+    <Image Include="Assets\Square310x310Logo.scale-100.jpg">
+      <DeploymentContent>true</DeploymentContent>
+    </Image>
     <Image Include="Assets\StoreLogo.png" />
-    <Image Include="Assets\SplashScreen.png" />
+    <Image Include="Assets\Wide310x150Logo.scale-100.jpg">
+      <DeploymentContent>true</DeploymentContent>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App.xaml.h">

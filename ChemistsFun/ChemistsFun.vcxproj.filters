@@ -56,15 +56,15 @@
     <Image Include="Assets\SmallLogo.png">
       <Filter>Assets</Filter>
     </Image>
-    <Image Include="Assets\SplashScreen.png">
-      <Filter>Assets</Filter>
-    </Image>
     <Image Include="Assets\StoreLogo.png">
       <Filter>Assets</Filter>
     </Image>
     <Image Include="Assets\Logo.png">
       <Filter>Assets</Filter>
     </Image>
+    <Image Include="Assets\Square310x310Logo.scale-100.jpg" />
+    <Image Include="Assets\Wide310x150Logo.scale-100.jpg" />
+    <Image Include="Assets\SplashScreen.scale-180.png" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest" />
