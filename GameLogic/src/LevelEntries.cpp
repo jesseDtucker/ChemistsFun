@@ -15,7 +15,7 @@ const float WORLD_MARGIN = 10.0f;
 const float SIZE_OF_WORLD_MARGIN = 1.0f;
 const int MAX_PARTICLES = 0;
 const float WOOD_PLATFORM_SIZE = 0.3f;
-const float WOOD_DENSITY = 0.5f;
+const float WOOD_DENSITY = 0.1f;
 
 WorldPtr MakeWorld()
 {
@@ -41,7 +41,7 @@ b2Body* CreateWoodPlatform(WorldPtr world, b2Body* anchor, float width, float x,
 		{ width, 0.0f },
 		{ width, WOOD_PLATFORM_SIZE },
 		{ l + 2.0f * TAIL_SIZE, WOOD_PLATFORM_SIZE },
-		{ l + TAIL_SIZE, WOOD_PLATFORM_SIZE + TAIL_SIZE },
+		{ l + TAIL_SIZE, WOOD_PLATFORM_SIZE + TAIL_SIZE * 3.0f },
 		{ l, WOOD_PLATFORM_SIZE },
 		{ 0, WOOD_PLATFORM_SIZE }
 	};
@@ -159,10 +159,10 @@ std::shared_ptr<Level> FluidGame::LevelEntries::LoadLevelTwo(float particleRadiu
 	CreateStaticBox(0.0f, 10.0f, 7.0f, 1.0f, *world); // box 3
 	CreateStaticBox(0.0f, 12.0f, 1.0f, 2.0f, *world); // box 4
 	CreateStaticBox(0.0f, 14.0f, 2.0f, 3.0f, *world); // box 5
-	CreateStaticBox(0.0f, 17.0f, 1.0f, 3.0f, *world); // box 6
+	CreateStaticBox(0.0f, 16.65f, 1.0f, 3.0f, *world); // box 6
 	CreateStaticBox(0.0f, 20.0f, 17.0f, 1.0f, *world); // box 7
 
-	auto box8 = CreateStaticBox(13.0f, 11.025f, 4.0f, 9.0f, *world); // box 8
+	auto box8 = CreateStaticBox(13.0f, 11.0f, 4.0f, 9.0f, *world); // box 8
 	CreateStaticBox(27.0f, 9.0f, 1.0f, 13.0f, *world); // box 9
 	CreateStaticBox(20.0f, 7.0f, 5.0f, 6.0f, *world); // box 10
 	
@@ -192,7 +192,7 @@ std::shared_ptr<Level> FluidGame::LevelEntries::LoadLevelTwo(float particleRadiu
 	CreateStaticBox(9.0f, -20.0f, 1.0f, 34.0f, *world); // box 18
 
 	auto emitter1 = CreateEmitter(8.0f, -5.0f, particleSystem);
-	auto emitter2 = CreateEmitter(2.0f, 19.0f, particleSystem);
+	//auto emitter2 = CreateEmitter(2.0f, 19.0f, particleSystem);
 	auto emitter3 = CreateEmitter(16.0f, -5.0f, particleSystem);
 
 	auto jet1 = CreateJet(18.0f, 24.0f, particleSystem);
@@ -203,10 +203,10 @@ std::shared_ptr<Level> FluidGame::LevelEntries::LoadLevelTwo(float particleRadiu
 	auto jet32 = CreateJet(23.0f, 27.0f, particleSystem);
 	auto jet4 = CreateJet(24.0f, 23.0f, particleSystem);
 	auto jet42 = CreateJet(25.0f, 24.0f, particleSystem);
-	auto jet5 = CreateJet(26.0f, 22.0f, particleSystem, 0.6f, 500.0f);
-	auto jet52 = CreateJet(26.5f, 23.0f, particleSystem, 0.6f, 500.0f);
+	auto jet5 = CreateJet(26.0f, 22.0f, particleSystem, 0.3f, 300.0f);
+	auto jet52 = CreateJet(26.5f, 23.0f, particleSystem, 0.3f, 300.0f);
 
-	auto wood = CreateWoodPlatform(world, box8, 2.80f, 10.1f, 19.0f);
+	auto wood = CreateWoodPlatform(world, box8, 2.80f, 10.1f, 14.0f);
 
 	auto result = make_shared<Level>(world, particleSystem);
 	result->SetKillBoxes(CreateKillBox(world));
@@ -216,7 +216,7 @@ std::shared_ptr<Level> FluidGame::LevelEntries::LoadLevelTwo(float particleRadiu
 
 	result->SetEmitters(
 	{
-		emitter1, emitter2, emitter3,
+		emitter1, emitter3,
 		jet1, jet2, jet3, jet4, jet5,
 		jet12, jet22, jet32, jet42, jet52
 	});

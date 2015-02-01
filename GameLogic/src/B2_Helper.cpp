@@ -39,5 +39,5 @@ std::shared_ptr<Emitter> FluidGame::CreateEmitter(float x, float y, b2ParticleSy
 
 std::shared_ptr<Emitter> FluidGame::CreateJet(float x, float y, b2ParticleSystem* particleSystem, float lifetime, float strength)
 {
-	return make_shared<Emitter>(particleSystem, b2Vec2{ x, y }, strength, b2Vec2{ 0.001f, -40.0f }, b2Vec2{ 0.002f, -100.0f }, lifetime, 0.4f);
+	return make_shared<Emitter>(particleSystem, b2Vec2{ x, y }, strength, b2Vec2{ 0.001f, -40.0f }, b2Vec2{ 0.002f, -80.0f }, lifetime, 0.4f);
 }
