@@ -139,6 +139,87 @@ std::shared_ptr<Level> LevelEntries::LoadLevelOne(float particleRadius)
 	auto character = make_shared<Character>(b2Vec2{ 1.5f, 5.0f }, world.get());
 	result->SetMainCharacter(character);
 
+	return result;
+}
+
+std::shared_ptr<Level> FluidGame::LevelEntries::LoadLevelTwo(float particleRadius)
+{
+	WorldPtr world = MakeWorld();
+	b2ParticleSystemDef particleSystemDef;
+	particleSystemDef.radius = particleRadius;
+	particleSystemDef.maxCount = MAX_PARTICLES;
+	b2ParticleSystem *particleSystem = world.get()->CreateParticleSystem(&particleSystemDef);
+
+	particleSystem->SetGravityScale(GRAVITY_SCALE);
+	particleSystem->SetDensity(DENSITY);
+	particleSystem->SetStrictContactCheck(true);
+
+	CreateStaticBox(0.0f, 2.0f, 4.0f, 2.0f, *world); // box 1
+	CreateStaticBox(0.0f, 4.0f, 1.0f, 6.0f, *world); // box 2
+	CreateStaticBox(0.0f, 10.0f, 7.0f, 1.0f, *world); // box 3
+	CreateStaticBox(0.0f, 12.0f, 1.0f, 2.0f, *world); // box 4
+	CreateStaticBox(0.0f, 14.0f, 2.0f, 3.0f, *world); // box 5
+	CreateStaticBox(0.0f, 17.0f, 1.0f, 3.0f, *world); // box 6
+	CreateStaticBox(0.0f, 20.0f, 17.0f, 1.0f, *world); // box 7
+
+	auto box8 = CreateStaticBox(13.0f, 11.025f, 4.0f, 9.0f, *world); // box 8
+	CreateStaticBox(27.0f, 9.0f, 1.0f, 13.0f, *world); // box 9
+	CreateStaticBox(20.0f, 7.0f, 5.0f, 6.0f, *world); // box 10
+	
+	// box 11 and 12 Note: 12 omitted
+	b2BodyDef bodyDef;
+	bodyDef.type = b2_staticBody;
+	auto box11 = world->CreateBody(&bodyDef);
+	b2PolygonShape shape;
+	const b2Vec2 vertices_b11[6] =
+	{
+		{ 10.0f, 2.0f },
+		{ 15.0f, 2.0f },
+		{ 21.0f, 5.0f },
+		{ 23.0f, 5.0f },
+		{ 23.0f, 7.0f },
+		{ 20.0f, 7.0f }	
+	};
+	shape.Set(vertices_b11, 6);
+	auto fixture = box11->CreateFixture(&shape, 1.0f);
+
+	// box 13 onwards
+	CreateStaticBox(4.0f, 13.0f, 6.0f, 1.0f, *world); // box 13
+	CreateStaticBox(4.0f, 16.0f, 6.0f, 2.0f, *world); // box 14
+	CreateStaticBox(3.0f, 6.0f, 7.0f, 2.0f, *world); // box 15
+	CreateStaticBox(9.0f, 3.0f, 1.0f, 2.0f, *world); // box 16
+	CreateStaticBox(7.0f, 2.0f, 3.0f, 2.0f, *world); // box 17
+	CreateStaticBox(9.0f, -20.0f, 1.0f, 34.0f, *world); // box 18
+
+	auto emitter1 = CreateEmitter(8.0f, -5.0f, particleSystem);
+	auto emitter2 = CreateEmitter(2.0f, 19.0f, particleSystem);
+	auto emitter3 = CreateEmitter(16.0f, -5.0f, particleSystem);
+
+	auto jet1 = CreateJet(18.0f, 24.0f, particleSystem);
+	auto jet12 = CreateJet(19.0f, 25.0f, particleSystem);
+	auto jet2 = CreateJet(20.0f, 28.0f, particleSystem);
+	auto jet22 = CreateJet(21.0f, 29.0f, particleSystem);
+	auto jet3 = CreateJet(22.0f, 26.0f, particleSystem);
+	auto jet32 = CreateJet(23.0f, 27.0f, particleSystem);
+	auto jet4 = CreateJet(24.0f, 23.0f, particleSystem);
+	auto jet42 = CreateJet(25.0f, 24.0f, particleSystem);
+	auto jet5 = CreateJet(26.0f, 22.0f, particleSystem, 0.6f, 500.0f);
+	auto jet52 = CreateJet(26.5f, 23.0f, particleSystem, 0.6f, 500.0f);
+
+	auto wood = CreateWoodPlatform(world, box8, 2.80f, 10.1f, 19.0f);
+
+	auto result = make_shared<Level>(world, particleSystem);
+	result->SetKillBoxes(CreateKillBox(world));
+
+	auto character = make_shared<Character>(b2Vec2{ 1.0f, 1.0f }, world.get());
+	result->SetMainCharacter(character);
+
+	result->SetEmitters(
+	{
+		emitter1, emitter2, emitter3,
+		jet1, jet2, jet3, jet4, jet5,
+		jet12, jet22, jet32, jet42, jet52
+	});
 
 	return result;
 }

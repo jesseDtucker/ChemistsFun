@@ -23,7 +23,7 @@ namespace FluidGame
 		PROP_SET_AND_GET(bool, DrawingMode);
 		// TODO::JT add character???
 
-		std::shared_ptr<Emitter> CreateEmitter(float x, float y);
+		std::shared_ptr<Emitter> CreateEmitter(float x, float y, float particlesPerSecond);
 
 		void Step(float dt);
 

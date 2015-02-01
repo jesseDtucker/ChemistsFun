@@ -3,10 +3,10 @@
 const float MOVE_SPEED = 6.0f;
 const float JUMP_SPEED = 16.0f;
 
-const float CHAR_WIDTH = 0.3f;
-const float CHAR_HEIGHT = 0.7f;
+const float CHAR_WIDTH = 0.5f;
+const float CHAR_HEIGHT = 1.2f;
 
-const float GRAVITY_SCALE = 4.25f;
+const float GRAVITY_SCALE = 3.25f;
 const float FRICTION = 1.5f;
 const int MAX_JUMPS = 1; // character can jump twice, ie. double jump
 
@@ -25,6 +25,7 @@ FluidGame::Character::Character(b2Vec2 position, b2World* world)
 
 	auto shape = CreateBoxShape(CHAR_WIDTH, CHAR_HEIGHT);
 	auto fixture = m_body->CreateFixture(&shape, 1.0f);
+	fixture->SetDensity(0.5);
 	fixture->SetFriction(FRICTION);
 }
 

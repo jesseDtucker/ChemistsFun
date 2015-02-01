@@ -14,6 +14,7 @@ namespace FluidGame
 	{
 	public:
 		static std::shared_ptr<Level> LoadLevelOne(float particleRadius);
+		static std::shared_ptr<Level> LoadLevelTwo(float particleRadius);
 	private:
 	};
 }

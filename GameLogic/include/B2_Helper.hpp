@@ -18,5 +18,6 @@ namespace FluidGame
 
 	b2PolygonShape CreateBoxShape(float width, float height);
 	b2Body* CreateStaticBox(float x, float y, float width, float height, b2World& world);
-	Emitter CreateEmitter(float x, float y, b2ParticleSystem *particleSystem);
+	std::shared_ptr<Emitter> CreateEmitter(float x, float y, b2ParticleSystem *particleSystem);
+	std::shared_ptr<Emitter> CreateJet(float x, float y, b2ParticleSystem* particleSystem, float lifetime = 0.2f, float strength = 300.0f);
 }

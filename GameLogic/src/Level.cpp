@@ -26,8 +26,11 @@ void Level::Step(float dt)
 	{
 		emitter->Step(dt);
 	}
-	m_MainCharacter->Step(dt);
-
+	if (m_MainCharacter != nullptr)
+	{
+		m_MainCharacter->Step(dt);
+	}
+	
 	// kill particles that go off screen
 	b2Transform emptyTransform;
 	emptyTransform.Set({ 0.0f, 0.0f }, 0.0f);
@@ -38,17 +41,20 @@ void Level::Step(float dt)
 		lowestPoint = std::max(lowestPoint, killBox.first.p.y);
 	}
 
-	auto mainCharacterCenter = m_MainCharacter->GetBody()->GetWorldCenter();
-	if (mainCharacterCenter.y > lowestPoint)
+	if (m_MainCharacter != nullptr)
 	{
-		// character is considered to have fallen off the world
-		m_MainCharacter->Kill();
+		auto mainCharacterCenter = m_MainCharacter->GetBody()->GetWorldCenter();
+		if (mainCharacterCenter.y > lowestPoint)
+		{
+			// character is considered to have fallen off the world
+			m_MainCharacter->Kill();
+		}
 	}
 }
 
-std::shared_ptr<Emitter> FluidGame::Level::CreateEmitter(float x, float y)
+std::shared_ptr<Emitter> FluidGame::Level::CreateEmitter(float x, float y, float particlesPerSecond)
 {
-	std::shared_ptr<Emitter> emitter = make_shared<Emitter>(m_particleSystem, b2Vec2{ x, y });
+	std::shared_ptr<Emitter> emitter = make_shared<Emitter>(m_particleSystem, b2Vec2{ x, y }, particlesPerSecond);
 	m_Emitters.push_back(emitter);
 	std::shared_ptr<Emitter> result{ emitter.get(), [this, emitter](Emitter* unused)
 	{

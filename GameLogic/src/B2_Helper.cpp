@@ -32,7 +32,12 @@ b2Body* FluidGame::CreateStaticBox(float x, float y, float width, float height, 
 	return body;
 }
 
-Emitter FluidGame::CreateEmitter(float x, float y, b2ParticleSystem* particleSystem)
+std::shared_ptr<Emitter> FluidGame::CreateEmitter(float x, float y, b2ParticleSystem* particleSystem)
 {
-	return Emitter(particleSystem, b2Vec2{ x, y });
+	return make_shared<Emitter>(particleSystem, b2Vec2{ x, y });
+}
+
+std::shared_ptr<Emitter> FluidGame::CreateJet(float x, float y, b2ParticleSystem* particleSystem, float lifetime, float strength)
+{
+	return make_shared<Emitter>(particleSystem, b2Vec2{ x, y }, strength, b2Vec2{ 0.001f, -40.0f }, b2Vec2{ 0.002f, -100.0f }, lifetime, 0.4f);
 }
