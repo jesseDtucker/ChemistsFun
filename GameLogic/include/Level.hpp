@@ -11,10 +11,10 @@ namespace FluidGame
 	{
 	public:
 
-		Level(WorldPtr world, ParticleSystemPtr particleSystem);
+		Level(b2World world, b2ParticleSystem particleSystem);
 
-		PROP_GET(WorldPtr, World);
-		PROP_GET(ParticleSystemPtr, ParticleSystem);
+		PROP_GET(b2World, World);
+		PROP_GET(b2ParticleSystem, b2ParticleSystem);
 		PROP_SET_AND_GET(std::vector<std::shared_ptr<Emitter>>, Emitters);
 		PROP_SET_AND_GET(std::vector<std::pair<b2Transform COMMA b2PolygonShape>>, KillBoxes);
 		PROP_SET_AND_GET(std::shared_ptr<Character>, MainCharacter);

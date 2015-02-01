@@ -8,7 +8,7 @@ const int VELOCITY_ITERATIONS = 8;
 const int POSITION_ITERATIONS = 3;
 const int PARTICLE_ITERATIONS = 3;
 
-Level::Level(WorldPtr world, ParticleSystemPtr particleSystem)
+Level::Level(b2World world, b2ParticleSystem particleSystem)
 	: m_World(world)
 	, m_ParticleSystem(particleSystem)
 {

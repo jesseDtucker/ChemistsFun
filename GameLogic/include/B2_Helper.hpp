@@ -14,14 +14,7 @@
 
 namespace FluidGame
 {
-	typedef std::shared_ptr<b2World> WorldPtr;
-	typedef std::shared_ptr<b2ParticleSystem> ParticleSystemPtr;
-	typedef std::shared_ptr<b2Body> BodyPtr;
-
-	ParticleSystemPtr WrapB2Resource(b2World* world, b2ParticleSystem* res);
-	BodyPtr WrapB2Resource(b2World* world, b2Body* body);
-
 	b2PolygonShape CreateBoxShape(float width, float height);
 	b2Body* CreateStaticBox(float x, float y, float width, float height, b2World& world);
-	std::shared_ptr<Emitter> CreateEmitter(float x, float y, ParticleSystemPtr particleSystem);
+	std::shared_ptr<Emitter> CreateEmitter(float x, float y, b2ParticleSystem particleSystem);
 }
