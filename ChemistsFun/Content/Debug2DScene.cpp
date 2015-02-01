@@ -114,7 +114,7 @@ void Debug2DScene::DrawRectangle(float right, float left, float top, float botto
 	context->EndDraw();
 }
 
-void Debug2DScene::DrawPolygon(b2PolygonShape *polygon, int32 edges)
+void Debug2DScene::DrawPolygon(b2PolygonShape *polygon, int32 edges, b2Vec2 bodyPos)
 {
 	auto context = m_deviceResources->GetD2DDeviceContext();
 
@@ -128,10 +128,10 @@ void Debug2DScene::DrawPolygon(b2PolygonShape *polygon, int32 edges)
 
 	for (int e(1); e <= edges; ++e)
 	{
-		point0.x = (polygon->GetVertex(e - 1).x / (SCREEN_HEIGHT / aspectRatio)) * width;
-		point0.y = (polygon->GetVertex(e - 1).y / SCREEN_HEIGHT) * height;
-		point1.x = (polygon->GetVertex(e).x / (SCREEN_HEIGHT / aspectRatio)) * width;
-		point1.y = (polygon->GetVertex(e).y / SCREEN_HEIGHT) * height;
+		point0.x = ((polygon->GetVertex(e - 1).x + bodyPos.x) / (SCREEN_HEIGHT / aspectRatio)) * width;
+		point0.y = ((polygon->GetVertex(e - 1).y + bodyPos.y) / SCREEN_HEIGHT) * height;
+		point1.x = ((polygon->GetVertex(e).x + bodyPos.x) / (SCREEN_HEIGHT / aspectRatio)) * width;
+		point1.y = ((polygon->GetVertex(e).y + bodyPos.y) / SCREEN_HEIGHT) * height;
 
 		context->DrawLine(point0, point1, activeBrush);
 	}
@@ -175,7 +175,7 @@ void Debug2DScene::DrawBody(b2Body &body)
 		}
 		case(b2Shape::e_polygon) : {
 			auto drawTarget = dynamic_cast<b2PolygonShape *>(shape);
-			DrawPolygon(drawTarget, drawTarget->GetVertexCount());
+			DrawPolygon(drawTarget, drawTarget->GetVertexCount(), body.GetPosition());
 			break;
 		}
 		case(b2Shape::e_edge) : {

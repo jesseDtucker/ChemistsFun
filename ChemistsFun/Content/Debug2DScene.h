@@ -36,7 +36,7 @@ namespace ChemistsFun
 		void DrawCircle(float x, float y, float radius);
 		void Debug2DScene::DrawText(std::wstring input, float box_left, float box_top, float box_right, float box_bottom);
 		void DrawRectangle(float right, float left, float top, float bottom);
-		void DrawPolygon(b2PolygonShape *polygon, int32 edges);
+		void DrawPolygon(b2PolygonShape *polygon, int32 edges, b2Vec2 bodyPos);
 		void DrawEdge(b2EdgeShape *edge);
 		void DrawBody(b2Body& body);
 

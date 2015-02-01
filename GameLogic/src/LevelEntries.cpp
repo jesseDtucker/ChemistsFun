@@ -22,9 +22,9 @@ void CreateStaticBox(float x, float y, float width, float height, b2World& world
 	const b2Vec2 vertices[4] = 
 	{
 		{0, 0},
-		{0, width},
-		{width, height},
-		{width, 0}
+		{0, 0 + height},
+		{0 + width, 0 + height},
+		{0 + width, 0}
 	};
 	shape.Set(vertices, 4);
 	body->CreateFixture(&shape, 0.0f);
@@ -54,7 +54,7 @@ std::shared_ptr<Level> LevelEntries::LoadLevelOne()
 
 	CreateStaticBox(1.0f, 8.0f, 3.0f, 7.0f, *world);
 	CreateStaticBox(13.0f, 8.0f, 3.0f, 7.0f, *world);
-	CreateStaticBox(0.0f, 14.0f, 16.0, 1.0f, *world);
+	CreateStaticBox(1.0f, 14.0f, 16.0, 1.0f, *world);
 
 	auto emitter = CreateEmitter(8.0f, 3.0f, particleSystem);
 
