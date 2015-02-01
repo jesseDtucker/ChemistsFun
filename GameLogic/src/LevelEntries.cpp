@@ -1,3 +1,5 @@
+#include <memory>
+
 #include "B2_Helper.hpp"
 #include "Level.hpp"
 #include "LevelEntries.hpp"
@@ -38,7 +40,7 @@ WorldPtr MakeWorld()
 	return make_unique<b2World>(b2Vec2{ 0.0f, 9.81f });
 }
 
-Level LevelEntries::LoadLevelOne()
+std::shared_ptr<Level> LevelEntries::LoadLevelOne()
 {
 	WorldPtr world = MakeWorld();
 	b2ParticleSystemDef particleSystemDef;
@@ -58,8 +60,8 @@ Level LevelEntries::LoadLevelOne()
 
 	// TODO::JT create a player and start/end points
 
-	Level result{ move(world), move(particleSystem) };
-	result.GetMutableEmitters().push_back(emitter);
+	auto result = make_shared<Level>(world, particleSystem);
+	result->GetMutableEmitters().push_back(emitter);
 
 	return result;
 }

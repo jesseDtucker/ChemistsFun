@@ -19,9 +19,9 @@ namespace FluidGame
 		Game& operator=(const Game&) = delete;
 
 		PROP_GET(bool, IsRunning);
-		PROP_GET(Level, CurrentLevel);
+		PROP_GET(std::shared_ptr<Level>, CurrentLevel);
 
-		void RunSim(const Level& level);
+		void RunSim(std::shared_ptr<Level> level);
 
 	private:
 	};

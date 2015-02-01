@@ -57,7 +57,10 @@ void ChemistsFunMain::StartRenderLoop()
 		}
 	});
 
-	m_game.RunSim(FluidGame::LevelEntries::LoadLevelOne());
+	if (!m_game.GetIsRunning())
+	{
+		m_game.RunSim(FluidGame::LevelEntries::LoadLevelOne());
+	}
 
 	// Run task on a dedicated high priority background thread.
 	m_renderLoopWorker = ThreadPool::RunAsync(workItemHandler, WorkItemPriority::High, WorkItemOptions::TimeSliced);
@@ -133,8 +136,8 @@ bool ChemistsFunMain::Render()
 	// TODO: Replace this with your app's content rendering functions.
 	m_Debug2D->Clear();
 
-	DrawParticles(m_game.GetCurrentLevel().GetParticleSystem(), *m_Debug2D);
-	DrawBodies(m_game.GetCurrentLevel().GetWorld(), *m_Debug2D);
+	DrawParticles(m_game.GetCurrentLevel()->GetParticleSystem(), *m_Debug2D);
+	//DrawBodies(m_game.GetCurrentLevel()->GetWorld(), *m_Debug2D);
 
 	return true;
 }

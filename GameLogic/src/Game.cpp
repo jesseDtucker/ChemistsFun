@@ -16,7 +16,7 @@ const float HEIGHT = 10.0f;
 const float EDGE_WIDTH = 0.5f;
 
 Game::Game()
-	: m_CurrentLevel(nullptr, nullptr)
+	: m_CurrentLevel(nullptr)
 {
 
 }
@@ -58,7 +58,7 @@ void CreateBounds(b2Body& ground)
 	}
 }
 
-void Game::RunSim(const Level& level)
+void Game::RunSim(std::shared_ptr<Level> level)
 {
 	m_CurrentLevel = level;
 	m_IsRunning = true;
@@ -69,7 +69,7 @@ void Game::RunSim(const Level& level)
 			auto stepSize = chrono::milliseconds((int) (STEP_SIZE * 1000.0f));
 			auto startTime = chrono::system_clock::now();
 
-			m_CurrentLevel.Step(STEP_SIZE);
+			m_CurrentLevel->Step(STEP_SIZE);
 
 			auto timeTaken = chrono::system_clock::now() - startTime;
 			if (timeTaken < stepSize)

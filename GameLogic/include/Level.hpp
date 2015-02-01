@@ -10,8 +10,6 @@ namespace FluidGame
 	public:
 
 		Level(WorldPtr world, ParticleSystemPtr particleSystem);
-		Level(const Level&& rhs);
-		Level& operator=(const Level&& rhs);
 
 		PROP_GET(WorldPtr, World);
 		PROP_GET(ParticleSystemPtr, ParticleSystem);
