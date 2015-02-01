@@ -82,6 +82,7 @@ void ChemistsFunMain::Update()
 void ChemistsFunMain::ProcessInput()
 {
 	// TODO: Add per frame input handling here.
+
 }
 
 b2Vec2 TransformToLocal(const b2Vec2& vec)
@@ -113,6 +114,7 @@ void DrawParticles(ParticleSystemPtr particleSystem, Debug2DScene& debugScene)
 	{
 		auto particlePos = particlePositions[i];
 		auto screenSpaceVec = TransformToLocal(particlePos);
+
 		debugScene.DrawCircle(screenSpaceVec.x, screenSpaceVec.y, PARTICLE_RADIUS);
 	}
 }

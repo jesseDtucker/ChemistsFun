@@ -169,7 +169,10 @@ void DirectXPage::AppBarButton_Click(Object^ sender, RoutedEventArgs^ e)
 void DirectXPage::OnPointerPressed(Object^ sender, PointerEventArgs^ e)
 {
 	// When the pointer is pressed begin tracking the pointer movement.
-	
+	auto pointer = e->CurrentPoint;
+
+	float x = pointer->Position.X;
+	float y = pointer->Position.Y;
 }
 
 void DirectXPage::OnPointerMoved(Object^ sender, PointerEventArgs^ e)
