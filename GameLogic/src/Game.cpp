@@ -74,7 +74,7 @@ void Game::RunSim(std::shared_ptr<Level> level)
 			auto timeTaken = chrono::system_clock::now() - startTime;
 			if (timeTaken < stepSize)
 			{
-				this_thread::sleep_for(stepSize - timeTaken);
+				this_thread::sleep_for((stepSize - timeTaken) / 4);
 			}
 		}
 	});
