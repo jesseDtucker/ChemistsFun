@@ -18,8 +18,8 @@ Debug2DScene::Debug2DScene(const std::shared_ptr<DX::DeviceResources>& deviceRes
 	MakeBrushes();
 	activeBrush = black;
 
-	auto width = context->GetSize().width;
-	auto height = context->GetSize().height;
+	width = context->GetSize().width;
+	height = context->GetSize().height;
 
 	aspectRatio = width / height;
 }
@@ -69,7 +69,7 @@ void Debug2DScene::GreenBrush()
 void Debug2DScene::DrawCircle(float x, float y, float radius)
 {
 	auto context = m_deviceResources->GetD2DDeviceContext();
-	D2D1_ELLIPSE ellipse = D2D1::Ellipse(D2D1::Point2F(x, y), radius, radius);
+	D2D1_ELLIPSE ellipse = D2D1::Ellipse(D2D1::Point2F(x * width, y * height), radius * aspectRatio, radius);
 
 	context->BeginDraw();
 	context->DrawEllipse(ellipse, activeBrush);
@@ -81,7 +81,7 @@ void Debug2DScene::DrawText(WCHAR *input, UINT32 len, float box_left, float box_
 	auto context = m_deviceResources->GetD2DDeviceContext();
 	auto factory = m_deviceResources->GetDWriteFactory();
 
-	D2D1_RECT_F textBox = D2D1::RectF(box_left, box_top, box_right, box_bottom);
+	D2D1_RECT_F textBox = D2D1::RectF(box_left * width, box_top * height, box_right * width, box_bottom * height);
 	IDWriteTextFormat *form;
 	auto hr = factory->CreateTextFormat(L"Arial", NULL, DWRITE_FONT_WEIGHT_REGULAR, DWRITE_FONT_STYLE_NORMAL, DWRITE_FONT_STRETCH_NORMAL, 16.0f, L"en-us", &form);
 
@@ -94,7 +94,7 @@ void Debug2DScene::DrawRectangle(float right, float left, float top, float botto
 {
 	auto context = m_deviceResources->GetD2DDeviceContext();
 
-	D2D1_RECT_F rectangle = D2D1::RectF(left, top, right, bottom);
+	D2D1_RECT_F rectangle = D2D1::RectF(left * width, top * height, right * width, bottom * height);
 
 	context->BeginDraw();
 	context->DrawRectangle(rectangle, activeBrush);

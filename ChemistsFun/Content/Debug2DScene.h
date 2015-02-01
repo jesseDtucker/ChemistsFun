@@ -6,6 +6,8 @@
 #include "ShaderStructures.h"
 #include "..\Common\StepTimer.h"
 
+class b2Vec2;
+
 namespace ChemistsFun
 {
 	class Debug2DScene;
@@ -29,6 +31,8 @@ namespace ChemistsFun
 		void DrawCircle(float x, float y, float radius);
 		void Debug2DScene::DrawText(WCHAR *input, UINT32 len, float box_left, float box_top, float box_right, float box_bottom);
 		void DrawRectangle(float right, float left, float top, float bottom);
+		void DrawPolygon(b2Vec2 *points, int sides);
+
 		void Clear();
 
 	private:
@@ -37,6 +41,8 @@ namespace ChemistsFun
 
 		// Variables used with the rendering loop.
 		bool	m_loadingComplete;
+		float	height;
+		float	width;
 		float	aspectRatio;
 
 		// Color brushes
