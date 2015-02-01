@@ -137,7 +137,7 @@ bool ChemistsFunMain::Render()
 	m_Debug2D->Clear();
 
 	DrawParticles(m_game.GetCurrentLevel()->GetParticleSystem(), *m_Debug2D);
-	//DrawBodies(m_game.GetCurrentLevel()->GetWorld(), *m_Debug2D);
+	DrawBodies(m_game.GetCurrentLevel()->GetWorld(), *m_Debug2D);
 
 	return true;
 }
