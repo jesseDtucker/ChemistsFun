@@ -24,10 +24,27 @@ WorldPtr MakeWorld()
 
 b2Body* CreateWoodPlatform(WorldPtr world, b2Body* anchor, float width, float x, float y)
 {
+	const float TAIL_SIZE = 0.7f;
+
 	b2BodyDef bodyDef;
 	bodyDef.type = b2_dynamicBody;
 	bodyDef.position = { x, y };
 	auto body = world->CreateBody(&bodyDef);
+
+	b2PolygonShape shape;
+	const b2Vec2 vertices[7] =
+	{
+		{ 0, 0 },
+		{ 0, 0 + height },
+		{ 0 + width, 0 + height },
+		{ 0 + width, 0 },
+		{ 0, 0 },
+		{ 0, 0 },
+		{ 0, 0 },
+	};
+	shape.Set(vertices, 7);
+	return shape;
+
 	auto shape = CreateBoxShape(width, WOOD_PLATFORM_SIZE);
 	auto fixture = body->CreateFixture(&shape, WOOD_DENSITY);
 

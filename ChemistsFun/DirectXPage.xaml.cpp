@@ -171,11 +171,13 @@ void DirectXPage::OnPointerPressed(Object^ sender, PointerEventArgs^ e)
 	
 	m_main->GetGame().GetCurrentLevel()->SetDrawingMode(true);
 	
-	
 	auto pointer = e->CurrentPoint;
-	auto context = m_deviceResources->GetD2DDeviceContext();
-	m_width = context->GetSize().width;
-	m_height = context->GetSize().height;
+	if (m_width == 0.0f)
+	{
+		auto context = m_deviceResources->GetD2DDeviceContext();
+		m_width = context->GetSize().width;
+		m_height = context->GetSize().height;
+	}
 	auto AR = m_width / m_height;
 
 	float x = pointer->Position.X;
