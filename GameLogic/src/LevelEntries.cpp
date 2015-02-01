@@ -34,9 +34,10 @@ b2Body* CreateWoodPlatform(WorldPtr world, b2Body* anchor, float width, float x,
 	auto l = (width - 2.0f * TAIL_SIZE) / 2.0f;
 	
 	b2PolygonShape shape;
-	const b2Vec2 vertices[7] =
+	const b2Vec2 vertices[8] =
 	{
 		{ 0.0f, 0.0f },
+		{ l + TAIL_SIZE, -TAIL_SIZE  / 8.0f},
 		{ width, 0.0f },
 		{ width, WOOD_PLATFORM_SIZE },
 		{ l + 2.0f * TAIL_SIZE, WOOD_PLATFORM_SIZE },
@@ -44,7 +45,7 @@ b2Body* CreateWoodPlatform(WorldPtr world, b2Body* anchor, float width, float x,
 		{ l, WOOD_PLATFORM_SIZE },
 		{ 0, WOOD_PLATFORM_SIZE }
 	};
-	shape.Set(vertices, 7);
+	shape.Set(vertices, 8);
 
 	auto fixture = body->CreateFixture(&shape, WOOD_DENSITY);
 

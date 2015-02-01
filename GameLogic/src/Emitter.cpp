@@ -6,7 +6,7 @@
 using namespace std;
 using namespace FluidGame;
 
-float EMITTER_RADIUS = 0.5f;
+float EMITTER_RADIUS = 1.0f;
 
 Emitter::Emitter(b2ParticleSystem* particleSystem, b2Vec2 position, float particlesPerSecond, b2Vec2 velocityMin, b2Vec2 velocityMax)
 	: m_particleSystem(particleSystem)
