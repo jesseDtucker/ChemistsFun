@@ -17,7 +17,10 @@ namespace ChemistsFun
 		ChemistsFunMain(const std::shared_ptr<DX::DeviceResources>& deviceResources);
 		~ChemistsFunMain();
 		void CreateWindowSizeDependentResources();
-		void TrackingUpdate(float positionX) { m_pointerLocationX = positionX; }
+		void TrackingUpdate(float positionX, float positionY) { m_pointerLocationX = positionX; m_pointerLocationY = positionY; }
+		void TrackingOn() { m_pointerPressed = true; }
+		void TrackingOff() { m_pointerPressed = false; }
+		bool IsTracking() { return m_pointerPressed; }
 		void StartRenderLoop();
 		void StopRenderLoop();
 		Concurrency::critical_section& GetCriticalSection() { return m_criticalSection; }
@@ -50,6 +53,8 @@ namespace ChemistsFun
 		DX::StepTimer m_timer;
 
 		// Track current input pointer position.
+		bool m_pointerPressed;
 		float m_pointerLocationX;
+		float m_pointerLocationY;
 	};
 }

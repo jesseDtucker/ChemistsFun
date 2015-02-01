@@ -18,9 +18,13 @@ Level::Level(WorldPtr world, ParticleSystemPtr particleSystem)
 void Level::Step(float dt)
 {
 	m_World->Step(dt, VELOCITY_ITERATIONS, POSITION_ITERATIONS, PARTICLE_ITERATIONS);
-	for (auto& emitter : m_Emitters)
+
+	if (emitterPresent)
 	{
-		emitter.Step(dt);
+		for (auto& emitter : m_Emitters)
+		{
+			emitter.Step(dt);
+		}
 	}
 	m_MainCharacter->Step(dt);
 

@@ -14,7 +14,7 @@ using namespace FluidGame;
 
 // Loads and initializes application assets when the application is loaded.
 ChemistsFunMain::ChemistsFunMain(const std::shared_ptr<DX::DeviceResources>& deviceResources) 
-	: m_deviceResources(deviceResources), m_pointerLocationX(0.0f)
+	: m_deviceResources(deviceResources), m_pointerLocationX(0.0f), m_pointerLocationY(0.0f)
 	, m_IsMovingLeft(false)
 	, m_IsMovingRight(false)
 {
@@ -171,6 +171,21 @@ bool ChemistsFunMain::Render()
 	DrawBodies(m_Game.GetCurrentLevel()->GetWorld(), *m_Debug2D);
 	//DrawKillBoxes(*m_Game.GetCurrentLevel(), *m_Debug2D);
 	DrawCharacter(*m_Game.GetCurrentLevel()->GetMainCharacter(), *m_Debug2D);
+
+	if ((m_pointerLocationX != 0.0f) && (m_pointerLocationY != 0.0f))
+	{
+		m_Game.GetCurrentLevel()->EmitterOn();
+		m_Game.GetCurrentLevel()->EmitterPos((m_pointerLocationX / context->GetSize().width) * (15 * (context->GetSize().width / context->GetSize().height)), (m_pointerLocationY / context->GetSize().height) * 15);
+		auto testx = m_Game.GetCurrentLevel()->emitterX;
+		auto testy = m_Game.GetCurrentLevel()->emitterY;
+		auto yes = m_Game.GetCurrentLevel()->emitterPresent;
+		m_Debug2D->DrawRectangle(testx + 0.1f, testx - 0.1f, testy + 0.1f, testy - 0.1f);
+	}
+	else
+	{
+		m_Game.GetCurrentLevel()->EmitterOff();
+	}
+
 	context->EndDraw();
 
 	if (m_IsMovingLeft && !m_IsMovingRight)
