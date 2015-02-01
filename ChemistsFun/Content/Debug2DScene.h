@@ -8,7 +8,7 @@
 #include "ShaderStructures.h"
 #include "..\Common\StepTimer.h"
 
-class b2Vec2;
+struct b2Vec2;
 
 namespace ChemistsFun
 {

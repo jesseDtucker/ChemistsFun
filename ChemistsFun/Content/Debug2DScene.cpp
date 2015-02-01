@@ -18,6 +18,9 @@ Debug2DScene::Debug2DScene(const std::shared_ptr<DX::DeviceResources>& deviceRes
 	MakeBrushes();
 	activeBrush = black;
 
+	width = (float) context->GetSize().width;
+	height = (float) context->GetSize().height;
+
 	aspectRatio = width / height;
 }
 

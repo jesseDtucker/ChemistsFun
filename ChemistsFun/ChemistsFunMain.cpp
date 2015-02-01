@@ -79,7 +79,22 @@ void ChemistsFunMain::ProcessInput()
 
 b2Vec2 TransformToLocal(const b2Vec2& vec)
 {
-	return {vec.x * 10, vec.y * 10};
+	return{ vec.x / 100.f + 0.1f, vec.y / 100.f + 0.1f };
+}
+
+b2AABB GenerateBoundingBox(b2Body& body)
+{
+	b2AABB result;
+	result.lowerBound = { FLT_MAX, FLT_MAX };
+	result.upperBound = { -FLT_MAX, -FLT_MAX };
+	auto fixture = body.GetFixtureList();
+	while (fixture != nullptr)
+	{
+		result.Combine(result, fixture->GetAABB(0));
+		fixture = fixture->GetNext();
+	}
+
+	return result;
 }
 
 // Renders the current frame according to the current application state.
@@ -102,6 +117,15 @@ bool ChemistsFunMain::Render()
 	}
 
 	m_Debug2D->DrawText(L"MY TEXT", 100.0f, 100.0f, 150.0f, 50.0f);
+
+	auto& ground = m_game.GetGround();
+	if (ground != nullptr)
+	{
+		auto boundingBox = GenerateBoundingBox(*ground);
+		auto topLeft = TransformToLocal(boundingBox.upperBound);
+		auto bottomRight = TransformToLocal(boundingBox.lowerBound);
+		m_Debug2D->DrawRectangle(bottomRight.x, topLeft.x, topLeft.y, bottomRight.y);
+	}
 
 	return true;
 }

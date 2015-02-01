@@ -16,6 +16,10 @@ const int VELOCITY_ITERATIONS = 8;
 const int POSITION_ITERATIONS = 3;
 const int PARTICLE_ITERATIONS = 3;
 
+const float WIDTH = 50.0f;
+const float HEIGHT = 30.0f;
+const float EDGE_WIDTH = 2.0f;
+
 Game::Game()
 	: m_world(make_unique<b2World>(b2Vec2 {0.0f, 9.81f}))
 	, m_emitter(nullptr)
@@ -25,46 +29,48 @@ Game::Game()
 	
 	m_particleSystem->SetGravityScale(GRAVITY_SCALE);
 	m_particleSystem->SetDensity(DENSITY);
+	m_particleSystem->SetStrictContactCheck(true);
 
 	// set contact and destruction listeners
 	m_world->SetDestructionListener(this);
 
-	m_emitter = make_shared<Emitter>(m_particleSystem.get());
+	m_emitter = make_shared<Emitter>(m_particleSystem.get(), b2Vec2{ WIDTH / 2.0f, HEIGHT / 2.0f });
 }
 
-void CreateBounds(b2Body* ground)
+void CreateBounds(b2Body& ground)
 {
 	{
 		b2PolygonShape shape;
+		// left edge
 		const b2Vec2 vertices[4] = {
-			b2Vec2(-40, -10),
-			b2Vec2(40, -10),
-			b2Vec2(40, 0),
-			b2Vec2(-40, 0) };
+			b2Vec2(-EDGE_WIDTH, 0),
+			b2Vec2(0, 0),
+			b2Vec2(0, HEIGHT),
+			b2Vec2(-EDGE_WIDTH, HEIGHT) };
 		shape.Set(vertices, 4);
-		ground->CreateFixture(&shape, 0.0f);
+		ground.CreateFixture(&shape, 0.0f);
 	}
 
 	{
 		b2PolygonShape shape;
 		const b2Vec2 vertices[4] = {
-			b2Vec2(0 - 20, -1),
-			b2Vec2(0, -1),
-			b2Vec2(0, 50),
-			b2Vec2(0 - 20, 50) };
+			b2Vec2(0, HEIGHT),
+			b2Vec2(WIDTH, HEIGHT),
+			b2Vec2(WIDTH, HEIGHT + EDGE_WIDTH),
+			b2Vec2(0, HEIGHT + EDGE_WIDTH) };
 		shape.Set(vertices, 4);
-		ground->CreateFixture(&shape, 0.0f);
+		ground.CreateFixture(&shape, 0.0f);
 	}
 
 	{
 		b2PolygonShape shape;
 		const b2Vec2 vertices[4] = {
-			b2Vec2(10, -1),
-			b2Vec2(10 + 20, -1),
-			b2Vec2(10 + 20, 50),
-			b2Vec2(10, 50) };
+			b2Vec2(WIDTH, 0),
+			b2Vec2(WIDTH + EDGE_WIDTH, 0),
+			b2Vec2(WIDTH + EDGE_WIDTH, HEIGHT),
+			b2Vec2(WIDTH, HEIGHT) };
 		shape.Set(vertices, 4);
-		ground->CreateFixture(&shape, 0.0f);
+		ground.CreateFixture(&shape, 0.0f);
 	}
 }
 
@@ -72,12 +78,13 @@ void Game::HackSetup()
 {
 	// hax
 	b2BodyDef bd;
-	b2Body* ground = m_world->CreateBody(&bd);
-	CreateBounds(ground);
+	m_Ground = WrapB2Resource(m_world.get(), m_world->CreateBody(&bd));
+	CreateBounds(*m_Ground);
 }
 
 void Game::RunSim()
 {
+	HackSetup();
 	m_IsRunning = true;
 	async([this]()
 	{
@@ -109,7 +116,7 @@ void FluidGame::Game::SayGoodbye(b2Joint* joint)
 
 void FluidGame::Game::SayGoodbye(b2Fixture* fixture)
 {
-	ARC_FAIL("TODO::JT");
+	//ARC_FAIL("TODO::JT");
 }
 
 void FluidGame::Game::SayGoodbye(b2ParticleGroup* group)
