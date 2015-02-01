@@ -34,6 +34,9 @@ void Debug2DScene::MakeBrushes()
 	auto hr = context->CreateSolidColorBrush(D2D1::ColorF(D2D1::ColorF::Black), &black);
 	hr = context->CreateSolidColorBrush(D2D1::ColorF(D2D1::ColorF::White), &white);
 	hr = context->CreateSolidColorBrush(D2D1::ColorF(D2D1::ColorF::Blue), &blue);
+	hr = context->CreateSolidColorBrush(D2D1::ColorF(D2D1::ColorF::RoyalBlue), &blue2);
+	hr = context->CreateSolidColorBrush(D2D1::ColorF(D2D1::ColorF::DarkBlue), &blue3);
+	hr = context->CreateSolidColorBrush(D2D1::ColorF(D2D1::ColorF::BlueViolet), &blue4);
 	hr = context->CreateSolidColorBrush(D2D1::ColorF(D2D1::ColorF::Red), &red);
 	hr = context->CreateSolidColorBrush(D2D1::ColorF(D2D1::ColorF::Yellow), &yellow);
 	hr = context->CreateSolidColorBrush(D2D1::ColorF(D2D1::ColorF::Green), &green);
@@ -52,6 +55,21 @@ void Debug2DScene::WhiteBrush()
 void Debug2DScene::BlueBrush()
 {
 	activeBrush = blue;
+}
+
+void Debug2DScene::BlueBrush2()
+{
+	activeBrush = blue2;
+}
+
+void Debug2DScene::BlueBrush3()
+{
+	activeBrush = blue3;
+}
+
+void Debug2DScene::BlueBrush4()
+{
+	activeBrush = blue4;
 }
 
 void Debug2DScene::RedBrush()

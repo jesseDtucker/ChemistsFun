@@ -1,6 +1,7 @@
 ﻿#include "pch.h"
 #include "ChemistsFunMain.h"
 #include "Common\DirectXHelper.h"
+#include <random>
 
 #include "B2_Helper.hpp"
 #include "LevelEntries.hpp"
@@ -109,15 +110,26 @@ b2AABB GenerateBoundingBox(b2Body& body)
 
 void DrawParticles(b2ParticleSystem* particleSystem, Debug2DScene& debugScene)
 {
-	debugScene.BlueBrush();
+	int r = (rand() % 4);
+
 	auto particlePositions = particleSystem->GetPositionBuffer();
 	auto particleCount = particleSystem->GetParticleCount();
 	for (int i = 0; i < particleCount; ++i)
 	{
+		switch (r)
+		{
+		case(0) : debugScene.BlueBrush(); break;
+		case(1) : debugScene.BlueBrush2(); break;
+		case(2) : debugScene.BlueBrush3(); break;
+		case(3) : debugScene.BlueBrush4(); break;
+		}
+
 		auto particlePos = particlePositions[i];
 		auto screenSpaceVec = TransformToLocal(particlePos);
 
 		debugScene.DrawCircle(screenSpaceVec.x, screenSpaceVec.y, PARTICLE_RADIUS);
+
+		r = (rand() % 4);
 	}
 }
 
