@@ -25,7 +25,7 @@ b2Body* FluidGame::CreateStaticBox(float x, float y, float width, float height, 
 	auto body = world.CreateBody(&bodyDef);
 
 	auto shape = CreateBoxShape(width, height);
-	body->CreateFixture(&shape, 0.0f);
+	body->CreateFixture(&shape, 1.0f);
 	return body;
 }
 

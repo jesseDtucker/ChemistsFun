@@ -2,6 +2,7 @@
 
 #include "Arc_Assert.hpp"
 #include "B2_Helper.hpp"
+#include "Box2D/Dynamics/Joints/b2PrismaticJoint.h"
 #include "Level.hpp"
 #include "LevelEntries.hpp"
 
@@ -13,10 +14,34 @@ const float DENSITY = 1.0f;
 const float WORLD_MARGIN = 10.0f;
 const float SIZE_OF_WORLD_MARGIN = 1.0f;
 const int MAX_PARTICLES = 0;
+const float WOOD_PLATFORM_SIZE = 0.3f;
+const float WOOD_DENSITY = 0.5f;
 
 WorldPtr MakeWorld()
 {
 	return make_unique<b2World>(b2Vec2{ 0.0f, 9.81f });
+}
+
+b2Body* CreateWoodPlatform(WorldPtr world, b2Body* anchor, float width, float x, float y)
+{
+	b2BodyDef bodyDef;
+	bodyDef.type = b2_dynamicBody;
+	bodyDef.position = { x, y };
+	auto body = world->CreateBody(&bodyDef);
+	auto shape = CreateBoxShape(width, WOOD_PLATFORM_SIZE);
+	auto fixture = body->CreateFixture(&shape, WOOD_DENSITY);
+
+	auto seperation = x - anchor->GetPosition().x;
+	
+	b2PrismaticJointDef prismaticJointDef;
+	prismaticJointDef.bodyA = body;
+	prismaticJointDef.bodyB = anchor;
+	prismaticJointDef.localAxisA = { 0.0f, 1.0f };
+	prismaticJointDef.collideConnected = true;
+	prismaticJointDef.localAnchorA = { -seperation, 0.0f };
+	world->CreateJoint(&prismaticJointDef);
+
+	return body;
 }
 
 std::vector<std::pair<b2Transform, b2PolygonShape>> CreateKillBox(WorldPtr world)
@@ -79,11 +104,13 @@ std::shared_ptr<Level> LevelEntries::LoadLevelOne(float particleRadius)
 	particleSystem->SetDensity(DENSITY);
 	particleSystem->SetStrictContactCheck(true);
 
-	CreateStaticBox(1.0f, 8.0f, 3.0f, 7.0f, *world);
+	auto leftBlock = CreateStaticBox(1.0f, 8.0f, 3.0f, 7.0f, *world);
 	CreateStaticBox(13.0f, 8.0f, 3.0f, 7.0f, *world);
 	CreateStaticBox(1.0f, 14.0f, 16.0, 1.0f, *world);
 
-	auto emitter = CreateEmitter(8.0f, 3.0f, particleSystem);
+	auto emitter = CreateEmitter(12.0f, 9.0f, particleSystem);
+
+	CreateWoodPlatform(world, leftBlock, 3.0f, 7.0f, 10.0f);
 
 	// TODO::JT create a player and start/end points
 
