@@ -13,7 +13,7 @@ namespace FluidGame
 	class LevelEntries
 	{
 	public:
-		static std::shared_ptr<Level> LoadLevelOne();
+		static std::shared_ptr<Level> LoadLevelOne(float particleRadius);
 	private:
 	};
 }

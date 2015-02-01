@@ -59,7 +59,7 @@ void ChemistsFunMain::StartRenderLoop()
 
 	if (!m_game.GetIsRunning())
 	{
-		m_game.RunSim(FluidGame::LevelEntries::LoadLevelOne());
+		m_game.RunSim(FluidGame::LevelEntries::LoadLevelOne(0.25f));
 	}
 
 	// Run task on a dedicated high priority background thread.

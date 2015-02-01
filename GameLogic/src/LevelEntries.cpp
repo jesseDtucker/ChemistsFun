@@ -10,7 +10,6 @@ using namespace FluidGame;
 const float GRAVITY_SCALE = 1.0f;
 const float DENSITY = 1.0f;
 const int MAX_PARTICLES = 500;
-const float PARTICLE_RADIUS = 0.250f;
 
 void CreateStaticBox(float x, float y, float width, float height, b2World& world)
 {
@@ -41,11 +40,11 @@ WorldPtr MakeWorld()
 	return make_unique<b2World>(b2Vec2{ 0.0f, 9.81f });
 }
 
-std::shared_ptr<Level> LevelEntries::LoadLevelOne()
+std::shared_ptr<Level> LevelEntries::LoadLevelOne(float particleRadius)
 {
 	WorldPtr world = MakeWorld();
 	b2ParticleSystemDef particleSystemDef;
-	particleSystemDef.radius = PARTICLE_RADIUS;
+	particleSystemDef.radius = particleRadius;
 	particleSystemDef.maxCount = MAX_PARTICLES;
 	ParticleSystemPtr particleSystem = WrapB2Resource(world.get(), world->CreateParticleSystem(&particleSystemDef));
 
