@@ -16,3 +16,5 @@
 #include "App.xaml.h"
 
 #include "Box2D/Box2D.h"
+
+const float SCREEN_HEIGHT = 20.0f;

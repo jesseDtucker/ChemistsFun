@@ -83,7 +83,7 @@ void ChemistsFunMain::ProcessInput()
 
 b2Vec2 TransformToLocal(const b2Vec2& vec)
 {
-	return{ vec.x / 100.f + 0.1f, vec.y / 100.f + 0.1f };
+	return vec;
 }
 
 b2AABB GenerateBoundingBox(b2Body& body)
@@ -109,7 +109,17 @@ void DrawParticles(ParticleSystemPtr particleSystem, Debug2DScene& debugScene)
 	{
 		auto particlePos = particlePositions[i];
 		auto screenSpaceVec = TransformToLocal(particlePos);
-		debugScene.DrawCircle(screenSpaceVec.x, screenSpaceVec.y, 5.0f);
+		debugScene.DrawCircle(screenSpaceVec.x, screenSpaceVec.y, .50f);
+	}
+}
+
+void DrawBodies(WorldPtr world, Debug2DScene& debugScene)
+{
+	auto body = world->GetBodyList();
+	while (body != nullptr)
+	{
+		debugScene.DrawBody(*body);
+		body = body->GetNext();
 	}
 }
 
@@ -122,11 +132,9 @@ bool ChemistsFunMain::Render()
 	// Render the scene objects.
 	// TODO: Replace this with your app's content rendering functions.
 	m_Debug2D->Clear();
-	m_Debug2D->DrawCircle(20.5f, 50.5f, 50.1f);
 
 	DrawParticles(m_game.GetCurrentLevel().GetParticleSystem(), *m_Debug2D);
-
-	m_Debug2D->DrawText(L"MY TEXT", 100.0f, 100.0f, 150.0f, 50.0f);
+	DrawBodies(m_game.GetCurrentLevel().GetWorld(), *m_Debug2D);
 
 	return true;
 }
