@@ -13,8 +13,10 @@ using namespace Concurrency;
 using namespace FluidGame;
 
 // Loads and initializes application assets when the application is loaded.
-ChemistsFunMain::ChemistsFunMain(const std::shared_ptr<DX::DeviceResources>& deviceResources) :
-	m_deviceResources(deviceResources), m_pointerLocationX(0.0f)
+ChemistsFunMain::ChemistsFunMain(const std::shared_ptr<DX::DeviceResources>& deviceResources) 
+	: m_deviceResources(deviceResources), m_pointerLocationX(0.0f)
+	, m_IsMovingLeft(false)
+	, m_IsMovingRight(false)
 {
 	// Register to be notified if the Device is lost or recreated
 	m_deviceResources->RegisterDeviceNotify(this);
@@ -170,6 +172,15 @@ bool ChemistsFunMain::Render()
 	//DrawKillBoxes(*m_Game.GetCurrentLevel(), *m_Debug2D);
 	DrawCharacter(*m_Game.GetCurrentLevel()->GetMainCharacter(), *m_Debug2D);
 	context->EndDraw();
+
+	if (m_IsMovingLeft && !m_IsMovingRight)
+	{
+		m_Game.GetCurrentLevel()->GetMainCharacter()->MoveLeft();
+	}
+	if (m_IsMovingRight && !m_IsMovingLeft)
+	{
+		m_Game.GetCurrentLevel()->GetMainCharacter()->MoveRight();
+	}
 
 	return true;
 }

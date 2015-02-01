@@ -201,15 +201,14 @@ void DirectXPage::OnSwapChainPanelSizeChanged(Object^ sender, SizeChangedEventAr
 
 void ChemistsFun::DirectXPage::KeyDown(Platform::Object^ sender, Windows::UI::Xaml::Input::KeyRoutedEventArgs^ e)
 {
-	auto character = m_main->GetGame().GetCurrentLevel()->GetMutableMainCharacter();
-
+	auto character = m_main->GetGame().GetCurrentLevel()->GetMainCharacter();
 	switch (e->Key)
 	{
 	case Windows::System::VirtualKey::A:
-		character->MoveLeft();
+		m_main->SetIsMovingLeft(true);
 		break;
 	case Windows::System::VirtualKey::D:
-		character->MoveRight();
+		m_main->SetIsMovingRight(true);
 		break;
 	case Windows::System::VirtualKey::Space:
 		character->Jump();
@@ -222,22 +221,32 @@ void ChemistsFun::DirectXPage::KeyDown(Platform::Object^ sender, Windows::UI::Xa
 
 void ChemistsFun::DirectXPage::KeyUp(Platform::Object^ sender, Windows::UI::Xaml::Input::KeyRoutedEventArgs^ e)
 {
-	
+	switch (e->Key)
+	{
+	case Windows::System::VirtualKey::A:
+		m_main->SetIsMovingLeft(false);
+		break;
+	case Windows::System::VirtualKey::D:
+		m_main->SetIsMovingRight(false);
+		break;
+	default:
+		break;
+	}
 }
 
 void ChemistsFun::DirectXPage::Page_PointerMoved(Platform::Object^ sender, Windows::UI::Xaml::Input::PointerRoutedEventArgs^ e)
 {
-	ARC_FAIL("TODO::BLACK");
+	
 }
 
 
 void ChemistsFun::DirectXPage::Page_PointerPressed(Platform::Object^ sender, Windows::UI::Xaml::Input::PointerRoutedEventArgs^ e)
 {
-	ARC_FAIL("TODO::BLACK");
+
 }
 
 
 void ChemistsFun::DirectXPage::Page_PointerReleased(Platform::Object^ sender, Windows::UI::Xaml::Input::PointerRoutedEventArgs^ e)
 {
-	ARC_FAIL("TODO::BLACK");
+	
 }
