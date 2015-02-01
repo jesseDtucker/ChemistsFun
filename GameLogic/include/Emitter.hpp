@@ -21,7 +21,7 @@ namespace FluidGame
 
 		void Step(float dt);
 		PROP_GET(b2Vec2, Position);
-		void SetPosition(float x, float y);
+		void SetPosition(b2Vec2 position);
 	private:
 		b2ParticleSystem* m_particleSystem;
 		float m_count;

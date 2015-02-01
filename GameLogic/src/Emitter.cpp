@@ -38,3 +38,8 @@ bool FluidGame::Emitter::operator==(const Emitter rhs)
 {
 	return rhs.m_particleIds == m_particleIds;
 }
+
+void FluidGame::Emitter::SetPosition(b2Vec2 position)
+{
+	m_Position = position;
+}
