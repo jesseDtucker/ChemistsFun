@@ -8,7 +8,10 @@
 #include "ShaderStructures.h"
 #include "..\Common\StepTimer.h"
 
-class b2Vec2;
+struct b2Vec2;
+class b2Body;
+class b2PolygonShape;
+class b2EdgeShape;
 
 namespace ChemistsFun
 {
@@ -33,7 +36,9 @@ namespace ChemistsFun
 		void DrawCircle(float x, float y, float radius);
 		void Debug2DScene::DrawText(std::wstring input, float box_left, float box_top, float box_right, float box_bottom);
 		void DrawRectangle(float right, float left, float top, float bottom);
-		void DrawPolygon(b2Vec2 *points, int sides);
+		void DrawPolygon(b2PolygonShape *polygon, int32 edges);
+		void DrawEdge(b2EdgeShape *edge);
+		void DrawBody(b2Body& body);
 
 		void Clear();
 

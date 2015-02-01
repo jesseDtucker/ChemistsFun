@@ -1,5 +1,8 @@
 #include "pch.h"
 #include "Debug2DScene.h"
+#include "Box2D\Collision\Shapes\b2CircleShape.h"
+#include "Box2D\Collision\Shapes\b2PolygonShape.h"
+#include "Box2D\Collision\Shapes\b2EdgeShape.h"
 
 #include "..\Common\DirectXHelper.h"
 
@@ -106,6 +109,79 @@ void Debug2DScene::DrawRectangle(float right, float left, float top, float botto
 	context->BeginDraw();
 	context->DrawRectangle(rectangle, activeBrush);
 	context->EndDraw();
+}
+
+void Debug2DScene::DrawPolygon(b2PolygonShape *polygon, int32 edges)
+{
+	auto context = m_deviceResources->GetD2DDeviceContext();
+
+	width = (float)context->GetSize().width;
+	height = (float)context->GetSize().height;
+
+	D2D1_POINT_2F point0 = { 0, 0 };
+	D2D1_POINT_2F point1 = { 0, 0 };
+
+	context->BeginDraw();
+
+	for (int e(1); e <= edges; ++e)
+	{
+		point0.x = (polygon->GetVertex(e - 1).x / (15 / aspectRatio)) * width;
+		point0.y = (polygon->GetVertex(e - 1).y / 15) * height;
+		point1.x = (polygon->GetVertex(e).x / (15 / aspectRatio)) * width;
+		point1.y = (polygon->GetVertex(e).y / 15) * height;
+
+		context->DrawLine(point0, point1, activeBrush);
+	}
+
+	context->EndDraw();
+}
+
+void Debug2DScene::DrawEdge(b2EdgeShape *edge)
+{
+	auto context = m_deviceResources->GetD2DDeviceContext();
+
+	width = (float)context->GetSize().width;
+	height = (float)context->GetSize().height;
+
+	D2D1_POINT_2F point0 = { 0, 0 };
+	D2D1_POINT_2F point1 = { 0, 0 };
+
+	context->BeginDraw();
+	point0.x = (edge->m_vertex1.x / (15 / aspectRatio)) * width;
+	point0.y = (edge->m_vertex1.y / 15) * height;
+	point1.x = (edge->m_vertex2.x / (15 / aspectRatio)) * width;
+	point1.y = (edge->m_vertex2.y / 15) * height;
+	context->DrawLine(point0, point1, activeBrush);
+	context->EndDraw();
+}
+
+void Debug2DScene::DrawBody(b2Body &body)
+{
+	auto fixture = body.GetFixtureList();
+
+	while (fixture != nullptr)
+	{
+		auto shape = fixture->GetShape();
+
+		switch (shape->GetType())
+		{
+		case(b2Shape::e_circle) : {
+			auto drawTarget = dynamic_cast<b2CircleShape *>(shape);
+			DrawCircle(drawTarget->GetPositionX() / (15 / aspectRatio), drawTarget->GetPositionY() / 15, drawTarget->m_radius / 15);
+		}
+		case(b2Shape::e_polygon) : {
+			auto drawTarget = dynamic_cast<b2PolygonShape *>(shape);
+			DrawPolygon(drawTarget, drawTarget->GetVertexCount());
+		}
+		case(b2Shape::e_edge) : {
+			auto drawTarget = dynamic_cast<b2EdgeShape *>(shape);
+			DrawEdge(drawTarget);
+		}
+		default: ARC_ASSERT_MSG(false, "Bad Shape");
+		}
+
+		fixture = fixture->GetNext();
+	}
 }
 
 void ChemistsFun::Debug2DScene::Clear()
