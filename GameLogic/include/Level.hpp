@@ -7,6 +7,7 @@
 
 namespace FluidGame
 {
+	enum class MaterialType { WATER, ROCK, ERASER };
 	class Level
 	{
 	public:
@@ -18,6 +19,8 @@ namespace FluidGame
 		PROP_SET_AND_GET(std::vector<std::shared_ptr<Emitter>>, Emitters);
 		PROP_SET_AND_GET(std::vector<std::pair<b2Transform COMMA b2PolygonShape>>, KillBoxes);
 		PROP_SET_AND_GET(std::shared_ptr<Character>, MainCharacter);
+		PROP_SET_AND_GET(MaterialType, Material);
+		PROP_SET_AND_GET(bool, DrawingMode);
 		// TODO::JT add character???
 
 		std::shared_ptr<Emitter> CreateEmitter(float x, float y);

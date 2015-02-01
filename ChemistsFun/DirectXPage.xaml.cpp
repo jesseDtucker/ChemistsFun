@@ -28,8 +28,6 @@ DirectXPage::DirectXPage()
 	: m_windowVisible(true)
 	, m_coreInput(nullptr)
 	, m_draggedEmitter(nullptr)
-	, m_material(0)
-	, m_drawing(false)
 {
 	InitializeComponent();
 
@@ -213,16 +211,14 @@ void ChemistsFun::DirectXPage::KeyDown(Platform::Object^ sender, Windows::UI::Xa
 	auto character = m_main->GetGame().GetCurrentLevel()->GetMainCharacter();
 	switch (e->Key)
 	{
-	case Windows::System::VirtualKey::1:
-		m_drawing = false;
-		m_material = Material::WATER;
+	case Windows::System::VirtualKey::Number1:
+		m_main->GetGame().GetCurrentLevel()->SetMaterial(FluidGame::MaterialType::WATER);
 		break;
-	case Windows::System::VirtualKey::2:
-		m_material = Material::ROCK;
-		m_drawing = false;
-	case Windows::System::VirtualKey::3:
-		m_material = Material::ERASER;
-		m_drawing = false;
+	case Windows::System::VirtualKey::Number2:
+		m_main->GetGame().GetCurrentLevel()->SetMaterial(FluidGame::MaterialType::ROCK);
+		break;
+	case Windows::System::VirtualKey::Number3:
+		m_main->GetGame().GetCurrentLevel()->SetMaterial(FluidGame::MaterialType::ERASER);
 		break;
 	case Windows::System::VirtualKey::A:
 		m_main->SetIsMovingLeft(true);
@@ -252,23 +248,4 @@ void ChemistsFun::DirectXPage::KeyUp(Platform::Object^ sender, Windows::UI::Xaml
 	default:
 		break;
 	}
-}
-
-void ChemistsFun::DirectXPage::Page_PointerMoved(Platform::Object^ sender, Windows::UI::Xaml::Input::PointerRoutedEventArgs^ e)
-{
-	if (m_drawing)
-		//todo: different particles at mouse point as mouse moves
-}
-
-
-void ChemistsFun::DirectXPage::Page_PointerPressed(Platform::Object^ sender, Windows::UI::Xaml::Input::PointerRoutedEventArgs^ e)
-{
-	m_drawing = true;
-}
-
-
-void ChemistsFun::DirectXPage::Page_PointerReleased(Platform::Object^ sender, Windows::UI::Xaml::Input::PointerRoutedEventArgs^ e)
-{
-	//todo: draw selected object
-	m_drawing = false;
 }

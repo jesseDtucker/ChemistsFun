@@ -21,10 +21,6 @@ namespace ChemistsFun
 		DirectXPage();
 		virtual ~DirectXPage();
 		
-		bool m_drawing;
-		int m_material;
-		
-		enum Material = { WATER, ROCK, ERASER };
 
 		void SaveInternalState(Windows::Foundation::Collections::IPropertySet^ state);
 		void LoadInternalState(Windows::Foundation::Collections::IPropertySet^ state);
