@@ -106,6 +106,7 @@ b2AABB GenerateBoundingBox(b2Body& body)
 
 void DrawParticles(ParticleSystemPtr particleSystem, Debug2DScene& debugScene)
 {
+	debugScene.BlueBrush();
 	auto particlePositions = particleSystem->GetPositionBuffer();
 	auto particleCount = particleSystem->GetParticleCount();
 	for (int i = 0; i < particleCount; ++i)
@@ -118,11 +119,27 @@ void DrawParticles(ParticleSystemPtr particleSystem, Debug2DScene& debugScene)
 
 void DrawBodies(WorldPtr world, Debug2DScene& debugScene)
 {
+	debugScene.BlackBrush();
 	auto body = world->GetBodyList();
 	while (body != nullptr)
 	{
 		debugScene.DrawBody(*body);
 		body = body->GetNext();
+	}
+}
+
+void DrawKillBoxes(Level& level, Debug2DScene& debugScene)
+{
+	debugScene.GreenBrush();
+	for (auto& box : level.GetKillBoxes())
+	{
+		b2AABB aabb;
+		box.second.ComputeAABB(&aabb, box.first, 0);
+		auto left = aabb.lowerBound.x;
+		auto right = aabb.upperBound.x;
+		auto top = aabb.lowerBound.y;
+		auto bottom = aabb.upperBound.y;
+		debugScene.DrawRectangle(right, left, top, bottom);
 	}
 }
 
@@ -138,6 +155,7 @@ bool ChemistsFunMain::Render()
 
 	DrawParticles(m_game.GetCurrentLevel()->GetParticleSystem(), *m_Debug2D);
 	DrawBodies(m_game.GetCurrentLevel()->GetWorld(), *m_Debug2D);
+	DrawKillBoxes(*m_game.GetCurrentLevel(), *m_Debug2D);
 
 	return true;
 }

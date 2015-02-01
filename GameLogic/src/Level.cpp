@@ -1,3 +1,4 @@
+#include "Arc_Assert.hpp"
 #include "Level.hpp"
 
 using namespace std;
@@ -20,5 +21,15 @@ void Level::Step(float dt)
 	for (auto& emitter : m_Emitters)
 	{
 		emitter.Step(dt);
+	}
+
+	int destroyed = 0;
+
+	// kill particles that go off screen
+	b2Transform emptyTransform;
+	emptyTransform.Set({ 0.0f, 0.0f }, 0.0f);
+	for (auto& killBox : m_KillBoxes)
+	{
+		destroyed += m_ParticleSystem->DestroyParticlesInShape(killBox.second, killBox.first);
 	}
 }
