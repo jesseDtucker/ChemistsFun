@@ -130,8 +130,17 @@ void Debug2DScene::DrawPolygon(b2PolygonShape *polygon, int32 edges, b2Vec2 body
 	{
 		point0.x = ((polygon->GetVertex(e - 1).x + bodyPos.x) / (SCREEN_HEIGHT / aspectRatio)) * width;
 		point0.y = ((polygon->GetVertex(e - 1).y + bodyPos.y) / SCREEN_HEIGHT) * height;
-		point1.x = ((polygon->GetVertex(e).x + bodyPos.x) / (SCREEN_HEIGHT / aspectRatio)) * width;
-		point1.y = ((polygon->GetVertex(e).y + bodyPos.y) / SCREEN_HEIGHT) * height;
+
+		if (e == edges)
+		{
+			point1.x = ((polygon->GetVertex(0).x + bodyPos.x) / (SCREEN_HEIGHT / aspectRatio)) * width;
+			point1.y = ((polygon->GetVertex(0).y + bodyPos.y) / SCREEN_HEIGHT) * height;
+		}
+		else
+		{
+			point1.x = ((polygon->GetVertex(e).x + bodyPos.x) / (SCREEN_HEIGHT / aspectRatio)) * width;
+			point1.y = ((polygon->GetVertex(e).y + bodyPos.y) / SCREEN_HEIGHT) * height;
+		}
 
 		context->DrawLine(point0, point1, activeBrush);
 	}
