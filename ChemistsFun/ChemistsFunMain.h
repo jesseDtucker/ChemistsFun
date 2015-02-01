@@ -6,6 +6,8 @@
 #include "Content\SampleFpsTextRenderer.h"
 #include "Content\Debug2DScene.h"
 
+#include "Game.hpp"
+
 // Renders Direct2D and 3D content on the screen.
 namespace ChemistsFun
 {
@@ -28,6 +30,8 @@ namespace ChemistsFun
 		void ProcessInput();
 		void Update();
 		bool Render();
+
+		FluidGame::Game m_game;
 
 		// Cached pointer to device resources.
 		std::shared_ptr<DX::DeviceResources> m_deviceResources;

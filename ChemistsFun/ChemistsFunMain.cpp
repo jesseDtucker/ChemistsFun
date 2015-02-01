@@ -53,6 +53,8 @@ void ChemistsFunMain::StartRenderLoop()
 		}
 	});
 
+	m_game.RunSim();
+
 	// Run task on a dedicated high priority background thread.
 	m_renderLoopWorker = ThreadPool::RunAsync(workItemHandler, WorkItemPriority::High, WorkItemOptions::TimeSliced);
 }
@@ -75,18 +77,31 @@ void ChemistsFunMain::ProcessInput()
 	// TODO: Add per frame input handling here.
 }
 
+b2Vec2 TransformToLocal(const b2Vec2& vec)
+{
+	return {vec.x * 10, vec.y * 10};
+}
+
 // Renders the current frame according to the current application state.
 // Returns true if the frame was rendered and is ready to be displayed.
 bool ChemistsFunMain::Render() 
 {
 	auto context = m_deviceResources->GetD2DDeviceContext();
 
-	
-
 	// Render the scene objects.
 	// TODO: Replace this with your app's content rendering functions.
 	m_Debug2D->Clear();
 	m_Debug2D->DrawCircle(20.5f, 50.5f, 50.1f);
+
+	auto particles = m_game.GetParticlesPositions();
+	for (int i = 0; i < particles.first; ++i)
+	{
+		auto particlePos = particles.second[i];
+		auto screenSpaceVec = TransformToLocal(particlePos);
+		m_Debug2D->DrawCircle(screenSpaceVec.x, screenSpaceVec.y, 5.0f);
+	}
+
+	m_Debug2D->DrawText(L"MY TEXT", 100.0f, 100.0f, 150.0f, 50.0f);
 
 	return true;
 }

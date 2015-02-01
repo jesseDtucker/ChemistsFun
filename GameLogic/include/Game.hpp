@@ -19,6 +19,8 @@ namespace FluidGame
 
 		PROP_GET(bool, IsRunning);
 
+		std::pair<int, b2Vec2*> GetParticlesPositions();
+
 		void HackSetup();
 		void RunSim();
 

@@ -76,7 +76,7 @@ void Debug2DScene::DrawCircle(float x, float y, float radius)
 	context->EndDraw();
 }
 
-void Debug2DScene::DrawText(WCHAR *input, UINT32 len, float box_left, float box_top, float box_right, float box_bottom)
+void Debug2DScene::DrawText(std::wstring text, float box_left, float box_top, float box_right, float box_bottom)
 {
 	auto context = m_deviceResources->GetD2DDeviceContext();
 	auto factory = m_deviceResources->GetDWriteFactory();
@@ -86,7 +86,7 @@ void Debug2DScene::DrawText(WCHAR *input, UINT32 len, float box_left, float box_
 	auto hr = factory->CreateTextFormat(L"Arial", NULL, DWRITE_FONT_WEIGHT_REGULAR, DWRITE_FONT_STYLE_NORMAL, DWRITE_FONT_STRETCH_NORMAL, 16.0f, L"en-us", &form);
 
 	context->BeginDraw();
-	context->DrawText(input, len, form, textBox, activeBrush);
+	context->DrawText(text.c_str(), text.size(), form, textBox, activeBrush);
 	context->EndDraw();
 }
 
