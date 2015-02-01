@@ -10,3 +10,13 @@ FluidGame::ParticleSystemPtr FluidGame::WrapB2Resource(b2World* world, b2Particl
 
 	return ParticleSystemPtr(res, deleter);
 }
+
+FluidGame::BodyPtr FluidGame::WrapB2Resource(b2World* world, b2Body* body)
+{
+	std::function<void(b2Body*)> deleter = [world](b2Body* p)
+	{
+		world->DestroyBody(p);
+	};
+
+	return BodyPtr(body, deleter);
+}

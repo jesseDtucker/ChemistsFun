@@ -20,9 +20,11 @@ namespace FluidGame
 		PROP_GET(bool, IsRunning);
 
 		std::pair<int, b2Vec2*> GetParticlesPositions();
+		PROP_GET(BodyPtr, Ground);
 
 		void HackSetup();
 		void RunSim();
+		
 
 		// Listeners
 		virtual void SayGoodbye(b2Joint* joint) override;
