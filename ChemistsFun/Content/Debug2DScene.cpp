@@ -78,9 +78,24 @@ void Debug2DScene::DrawCircle(float x, float y, float radius)
 
 	D2D1_ELLIPSE ellipse = D2D1::Ellipse(D2D1::Point2F((x / (SCREEN_HEIGHT / aspectRatio)) * width, (y / SCREEN_HEIGHT) * height), (radius / SCREEN_HEIGHT) * height, (radius / SCREEN_HEIGHT) * height);
 
-	context->BeginDraw();
 	context->DrawEllipse(ellipse, activeBrush);
-	context->EndDraw();
+}
+
+void Debug2DScene::DrawFilledCircle(float x, float y, float radius)
+{
+	auto context = m_deviceResources->GetD2DDeviceContext();
+
+	width = (float)context->GetSize().width;
+	height = (float)context->GetSize().height;
+
+	D2D1_ELLIPSE ellipse = D2D1::Ellipse(
+		D2D1::Point2F(
+			(x / (SCREEN_HEIGHT / aspectRatio)) * width,
+			(y / SCREEN_HEIGHT) * height),
+		(radius / SCREEN_HEIGHT) * height,
+		(radius / SCREEN_HEIGHT) * height);
+
+	context->DrawEllipse(ellipse, activeBrush, 10.0f);
 }
 
 void Debug2DScene::DrawText(std::wstring text, float box_left, float box_top, float box_right, float box_bottom)
@@ -95,9 +110,7 @@ void Debug2DScene::DrawText(std::wstring text, float box_left, float box_top, fl
 	IDWriteTextFormat *form;
 	auto hr = factory->CreateTextFormat(L"Arial", NULL, DWRITE_FONT_WEIGHT_REGULAR, DWRITE_FONT_STYLE_NORMAL, DWRITE_FONT_STRETCH_NORMAL, 16.0f, L"en-us", &form);
 
-	context->BeginDraw();
 	context->DrawText(text.c_str(), text.size(), form, textBox, activeBrush);
-	context->EndDraw();
 }
 
 void Debug2DScene::DrawRectangle(float right, float left, float top, float bottom)
@@ -109,9 +122,7 @@ void Debug2DScene::DrawRectangle(float right, float left, float top, float botto
 
 	D2D1_RECT_F rectangle = D2D1::RectF((left / (SCREEN_HEIGHT / aspectRatio)) * width, (top / SCREEN_HEIGHT) * height, (right / (SCREEN_HEIGHT / aspectRatio)) * width, (bottom / SCREEN_HEIGHT) * height);
 
-	context->BeginDraw();
 	context->DrawRectangle(rectangle, activeBrush);
-	context->EndDraw();
 }
 
 void Debug2DScene::DrawPolygon(b2PolygonShape *polygon, int32 edges, b2Vec2 bodyPos)
@@ -123,8 +134,6 @@ void Debug2DScene::DrawPolygon(b2PolygonShape *polygon, int32 edges, b2Vec2 body
 
 	D2D1_POINT_2F point0 = { 0, 0 };
 	D2D1_POINT_2F point1 = { 0, 0 };
-
-	context->BeginDraw();
 
 	for (int e(1); e <= edges; ++e)
 	{
@@ -144,8 +153,6 @@ void Debug2DScene::DrawPolygon(b2PolygonShape *polygon, int32 edges, b2Vec2 body
 
 		context->DrawLine(point0, point1, activeBrush);
 	}
-
-	context->EndDraw();
 }
 
 void Debug2DScene::DrawEdge(b2EdgeShape *edge)
@@ -158,13 +165,11 @@ void Debug2DScene::DrawEdge(b2EdgeShape *edge)
 	D2D1_POINT_2F point0 = { 0, 0 };
 	D2D1_POINT_2F point1 = { 0, 0 };
 
-	context->BeginDraw();
 	point0.x = (edge->m_vertex1.x / (SCREEN_HEIGHT / aspectRatio)) * width;
 	point0.y = (edge->m_vertex1.y / SCREEN_HEIGHT) * height;
 	point1.x = (edge->m_vertex2.x / (SCREEN_HEIGHT / aspectRatio)) * width;
 	point1.y = (edge->m_vertex2.y / SCREEN_HEIGHT) * height;
 	context->DrawLine(point0, point1, activeBrush);
-	context->EndDraw();
 }
 
 void Debug2DScene::DrawBody(b2Body &body)

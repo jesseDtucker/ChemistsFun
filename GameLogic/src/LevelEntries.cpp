@@ -9,7 +9,7 @@ using namespace FluidGame;
 
 const float GRAVITY_SCALE = 1.0f;
 const float DENSITY = 1.0f;
-const int MAX_PARTICLES = 500;
+const int MAX_PARTICLES = 0;
 
 void CreateStaticBox(float x, float y, float width, float height, b2World& world)
 {

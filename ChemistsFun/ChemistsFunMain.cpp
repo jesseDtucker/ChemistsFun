@@ -59,7 +59,7 @@ void ChemistsFunMain::StartRenderLoop()
 
 	if (!m_game.GetIsRunning())
 	{
-		m_game.RunSim(FluidGame::LevelEntries::LoadLevelOne(0.25f));
+		m_game.RunSim(FluidGame::LevelEntries::LoadLevelOne(PARTICLE_RADIUS));
 	}
 
 	// Run task on a dedicated high priority background thread.
@@ -112,7 +112,7 @@ void DrawParticles(ParticleSystemPtr particleSystem, Debug2DScene& debugScene)
 	{
 		auto particlePos = particlePositions[i];
 		auto screenSpaceVec = TransformToLocal(particlePos);
-		debugScene.DrawCircle(screenSpaceVec.x, screenSpaceVec.y, 0.15f);
+		debugScene.DrawCircle(screenSpaceVec.x, screenSpaceVec.y, PARTICLE_RADIUS);
 	}
 }
 
@@ -136,8 +136,12 @@ bool ChemistsFunMain::Render()
 	// TODO: Replace this with your app's content rendering functions.
 	m_Debug2D->Clear();
 
+	context->BeginDraw();
+	m_Debug2D->BlueBrush();
 	DrawParticles(m_game.GetCurrentLevel()->GetParticleSystem(), *m_Debug2D);
+	m_Debug2D->GreenBrush();
 	DrawBodies(m_game.GetCurrentLevel()->GetWorld(), *m_Debug2D);
+	context->EndDraw();
 
 	return true;
 }
