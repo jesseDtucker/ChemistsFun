@@ -14,7 +14,7 @@ namespace FluidGame
 	public:
 		Emitter(b2ParticleSystem* particleSystem, 
 				b2Vec2 position, 
-				float particlesPerSecond = 50.0f,
+				float particlesPerSecond = 30.0f,
 				b2Vec2 velocityMin = { 0.0f, 0.0f },
 				b2Vec2 velocityMax = { 0.5f, 0.5f },
 				float lifetime = 0.0f,

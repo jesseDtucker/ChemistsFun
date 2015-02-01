@@ -18,4 +18,4 @@
 #include "Box2D/Box2D.h"
 
 const float SCREEN_HEIGHT = 28.0f;
-const float PARTICLE_RADIUS = 0.10f;
+const float PARTICLE_RADIUS = 0.12f;
