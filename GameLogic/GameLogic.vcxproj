@@ -28,6 +28,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\B2_Helper.cpp" />
+    <ClCompile Include="src\Character.cpp" />
     <ClCompile Include="src\Level.cpp" />
     <ClCompile Include="src\LevelEntries.cpp" />
     <ClCompile Include="src\Emitter.cpp" />
@@ -35,6 +36,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\B2_Helper.hpp" />
+    <ClInclude Include="include\Character.hpp" />
     <ClInclude Include="include\Emitter.hpp" />
     <ClInclude Include="include\Game.hpp" />
     <ClInclude Include="include\Level.hpp" />

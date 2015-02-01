@@ -57,9 +57,9 @@ void ChemistsFunMain::StartRenderLoop()
 		}
 	});
 
-	if (!m_game.GetIsRunning())
+	if (!m_Game.GetIsRunning())
 	{
-		m_game.RunSim(FluidGame::LevelEntries::LoadLevelOne(PARTICLE_RADIUS));
+		m_Game.RunSim(FluidGame::LevelEntries::LoadLevelOne(PARTICLE_RADIUS));
 	}
 
 	// Run task on a dedicated high priority background thread.
@@ -145,6 +145,13 @@ void DrawKillBoxes(Level& level, Debug2DScene& debugScene)
 	}
 }
 
+void DrawCharacter(Character& character, Debug2DScene& debugScene)
+{
+	auto body = character.GetBody();
+	debugScene.RedBrush();
+	debugScene.DrawBody(*body);
+}
+
 // Renders the current frame according to the current application state.
 // Returns true if the frame was rendered and is ready to be displayed.
 bool ChemistsFunMain::Render() 
@@ -157,10 +164,11 @@ bool ChemistsFunMain::Render()
 
 	context->BeginDraw();
 	m_Debug2D->BlueBrush();
-	DrawParticles(m_game.GetCurrentLevel()->GetParticleSystem(), *m_Debug2D);
+	DrawParticles(m_Game.GetCurrentLevel()->GetParticleSystem(), *m_Debug2D);
 	m_Debug2D->GreenBrush();
-	DrawBodies(m_game.GetCurrentLevel()->GetWorld(), *m_Debug2D);
-	//DrawKillBoxes(*m_game.GetCurrentLevel(), *m_Debug2D);
+	DrawBodies(m_Game.GetCurrentLevel()->GetWorld(), *m_Debug2D);
+	//DrawKillBoxes(*m_Game.GetCurrentLevel(), *m_Debug2D);
+	DrawCharacter(*m_Game.GetCurrentLevel()->GetMainCharacter(), *m_Debug2D);
 	context->EndDraw();
 
 	return true;

@@ -28,6 +28,9 @@
     <ClCompile Include="src\B2_Helper.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\Character.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\B2_Helper.hpp">
@@ -43,6 +46,9 @@
       <Filter>include</Filter>
     </ClInclude>
     <ClInclude Include="include\Level.hpp">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Character.hpp">
       <Filter>include</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "B2_Helper.hpp"
+#include "Character.hpp"
 #include "LevelEntries.hpp"
 
 namespace FluidGame
@@ -15,6 +16,7 @@ namespace FluidGame
 		PROP_GET(ParticleSystemPtr, ParticleSystem);
 		PROP_SET_AND_GET(std::vector<Emitter>, Emitters);
 		PROP_SET_AND_GET(std::vector<std::pair<b2Transform COMMA b2PolygonShape>>, KillBoxes);
+		PROP_SET_AND_GET(std::shared_ptr<Character>, MainCharacter);
 		// TODO::JT add character???
 
 		void Step(float dt);

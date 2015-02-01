@@ -73,15 +73,11 @@ DirectXPage::DirectXPage():
 			Windows::UI::Core::CoreInputDeviceTypes::Pen
 			);
 
-		auto coreWind = Windows::ApplicationModel::Core::CoreApplication::MainView->CoreWindow;
-
 		// Register for pointer events, which will be raised on the background thread.
 		m_coreInput->PointerPressed += ref new TypedEventHandler<Object^, PointerEventArgs^>(this, &DirectXPage::OnPointerPressed);
 		m_coreInput->PointerMoved += ref new TypedEventHandler<Object^, PointerEventArgs^>(this, &DirectXPage::OnPointerMoved);
 		m_coreInput->PointerReleased += ref new TypedEventHandler<Object^, PointerEventArgs^>(this, &DirectXPage::OnPointerReleased);
-		coreWind->KeyDown += ref new TypedEventHandler<CoreWindow^, KeyEventArgs^>(this, &DirectXPage::OnKeyDown);
-		coreWind->KeyUp += ref new TypedEventHandler<CoreWindow^, KeyEventArgs^>(this, &DirectXPage::OnKeyUp);
-
+		
 		// Begin processing input messages as they're delivered.
 		m_coreInput->Dispatcher->ProcessEvents(CoreProcessEventsOption::ProcessUntilQuit);
 	});
@@ -187,17 +183,6 @@ void DirectXPage::OnPointerReleased(Object^ sender, PointerEventArgs^ e)
 	
 }
 
-void DirectXPage::OnKeyDown(CoreWindow^ sender, KeyEventArgs^ e)
-{
-	// Stop tracking pointer movement when the pointer is released.
-
-}
-
-void DirectXPage::OnKeyUp(CoreWindow^ sender, KeyEventArgs^ e)
-{
-	// Stop tracking pointer movement when the pointer is released.
-
-}
 
 void DirectXPage::OnCompositionScaleChanged(SwapChainPanel^ sender, Object^ args)
 {
@@ -211,4 +196,31 @@ void DirectXPage::OnSwapChainPanelSizeChanged(Object^ sender, SizeChangedEventAr
 	critical_section::scoped_lock lock(m_main->GetCriticalSection());
 	m_deviceResources->SetLogicalSize(e->NewSize);
 	m_main->CreateWindowSizeDependentResources();
+}
+
+
+void ChemistsFun::DirectXPage::KeyDown(Platform::Object^ sender, Windows::UI::Xaml::Input::KeyRoutedEventArgs^ e)
+{
+	auto character = m_main->GetGame().GetCurrentLevel()->GetMutableMainCharacter();
+
+	switch (e->Key)
+	{
+	case Windows::System::VirtualKey::A:
+		character->MoveLeft();
+		break;
+	case Windows::System::VirtualKey::D:
+		character->MoveRight();
+		break;
+	case Windows::System::VirtualKey::Space:
+		character->Jump();
+		break;
+	default:
+		break;
+	}
+}
+
+
+void ChemistsFun::DirectXPage::KeyUp(Platform::Object^ sender, Windows::UI::Xaml::Input::KeyRoutedEventArgs^ e)
+{
+	
 }

@@ -14,37 +14,6 @@ const float WORLD_MARGIN = 10.0f;
 const float SIZE_OF_WORLD_MARGIN = 1.0f;
 const int MAX_PARTICLES = 0;
 
-b2PolygonShape CreateBoxShape(float width, float height)
-{
-	b2PolygonShape shape;
-	const b2Vec2 vertices[4] =
-	{
-		{ 0, 0 },
-		{ 0, 0 + height },
-		{ 0 + width, 0 + height },
-		{ 0 + width, 0 }
-	};
-	shape.Set(vertices, 4);
-	return shape;
-}
-
-b2Body* CreateStaticBox(float x, float y, float width, float height, b2World& world)
-{
-	b2BodyDef bodyDef;
-	bodyDef.type = b2_staticBody;
-	bodyDef.position = { x, y };
-	auto body = world.CreateBody(&bodyDef);
-
-	auto shape = CreateBoxShape(width, height);
-	body->CreateFixture(&shape, 0.0f);
-	return body;
-}
-
-Emitter CreateEmitter(float x, float y, ParticleSystemPtr particleSystem)
-{
-	return { particleSystem.get(), {x, y} };
-}
-
 WorldPtr MakeWorld()
 {
 	return make_unique<b2World>(b2Vec2{ 0.0f, 9.81f });
@@ -121,6 +90,9 @@ std::shared_ptr<Level> LevelEntries::LoadLevelOne(float particleRadius)
 	auto result = make_shared<Level>(world, particleSystem);
 	result->GetMutableEmitters().push_back(emitter);
 	result->SetKillBoxes(CreateKillBox(world));
+
+	result->SetMainCharacter(make_shared<Character>(b2Vec2{ 1.5f, 2.0f }, world));
+
 
 	return result;
 }

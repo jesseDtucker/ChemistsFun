@@ -22,6 +22,8 @@ namespace ChemistsFun
 		void StopRenderLoop();
 		Concurrency::critical_section& GetCriticalSection() { return m_criticalSection; }
 
+		PROP_GET(FluidGame::Game, Game);
+
 		// IDeviceNotify
 		virtual void OnDeviceLost();
 		virtual void OnDeviceRestored();
@@ -30,8 +32,6 @@ namespace ChemistsFun
 		void ProcessInput();
 		void Update();
 		bool Render();
-
-		FluidGame::Game m_game;
 
 		// Cached pointer to device resources.
 		std::shared_ptr<DX::DeviceResources> m_deviceResources;
