@@ -171,14 +171,17 @@ void Debug2DScene::DrawBody(b2Body &body)
 		case(b2Shape::e_circle) : {
 			auto drawTarget = dynamic_cast<b2CircleShape *>(shape);
 			DrawCircle(drawTarget->GetPositionX() / (15 / aspectRatio), drawTarget->GetPositionY() / 15, drawTarget->m_radius / 15);
+			break;
 		}
 		case(b2Shape::e_polygon) : {
 			auto drawTarget = dynamic_cast<b2PolygonShape *>(shape);
 			DrawPolygon(drawTarget, drawTarget->GetVertexCount());
+			break;
 		}
 		case(b2Shape::e_edge) : {
 			auto drawTarget = dynamic_cast<b2EdgeShape *>(shape);
 			DrawEdge(drawTarget);
+			break;
 		}
 		default: ARC_ASSERT_MSG(false, "Bad Shape");
 		}

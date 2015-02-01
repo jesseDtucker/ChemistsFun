@@ -125,6 +125,7 @@ bool ChemistsFunMain::Render()
 		auto topLeft = TransformToLocal(boundingBox.upperBound);
 		auto bottomRight = TransformToLocal(boundingBox.lowerBound);
 		m_Debug2D->DrawRectangle(bottomRight.x, topLeft.x, topLeft.y, bottomRight.y);
+		m_Debug2D->DrawBody(*ground);
 	}
 
 	return true;
