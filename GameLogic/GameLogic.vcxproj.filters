@@ -19,6 +19,9 @@
     <ClCompile Include="src\Game.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="B2_Helper.cpp">
+      <Filter>include</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\B2_Helper.hpp">

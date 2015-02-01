@@ -17,7 +17,7 @@ const int POSITION_ITERATIONS = 3;
 const int PARTICLE_ITERATIONS = 3;
 
 Game::Game()
-	: m_world(make_unique<b2World>(b2Vec2 {0.0f, -9.81f}))
+	: m_world(make_unique<b2World>(b2Vec2 {0.0f, 9.81f}))
 	, m_emitter(nullptr)
 {
 	b2ParticleSystemDef particleSystemDef;
@@ -78,6 +78,7 @@ void Game::HackSetup()
 
 void Game::RunSim()
 {
+	m_IsRunning = true;
 	async([this]()
 	{
 		while (m_IsRunning)
@@ -119,4 +120,9 @@ void FluidGame::Game::SayGoodbye(b2ParticleGroup* group)
 void FluidGame::Game::SayGoodbye(b2ParticleSystem* particleSystem, int32 index)
 {
 	ARC_FAIL("TODO::JT");
+}
+
+std::pair<int, b2Vec2*> FluidGame::Game::GetParticlesPositions()
+{
+	return{ m_particleSystem->GetParticleCount(), m_particleSystem->GetPositionBuffer() };
 }
