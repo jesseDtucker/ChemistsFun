@@ -15,7 +15,9 @@ namespace FluidGame
 		void MoveLeft();
 		void MoveRight();
 		void Jump();
+		void Kill();
 	private:
 		int m_jumpsLeft;
+		b2Vec2 m_startPos;
 	};
 }

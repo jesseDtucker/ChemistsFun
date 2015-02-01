@@ -91,7 +91,7 @@ std::shared_ptr<Level> LevelEntries::LoadLevelOne(float particleRadius)
 	result->GetMutableEmitters().push_back(emitter);
 	result->SetKillBoxes(CreateKillBox(world));
 
-	result->SetMainCharacter(make_shared<Character>(b2Vec2{ 1.5f, 2.0f }, world));
+	result->SetMainCharacter(make_shared<Character>(b2Vec2{ 1.5f, 5.0f }, world));
 
 
 	return result;

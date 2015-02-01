@@ -24,13 +24,20 @@ void Level::Step(float dt)
 	}
 	m_MainCharacter->Step(dt);
 
-	int destroyed = 0;
-
 	// kill particles that go off screen
 	b2Transform emptyTransform;
 	emptyTransform.Set({ 0.0f, 0.0f }, 0.0f);
+	float lowestPoint = -FLT_MAX;
 	for (auto& killBox : m_KillBoxes)
 	{
-		destroyed += m_ParticleSystem->DestroyParticlesInShape(killBox.second, killBox.first);
+		m_ParticleSystem->DestroyParticlesInShape(killBox.second, killBox.first);
+		lowestPoint = std::max(lowestPoint, killBox.first.p.y);
+	}
+
+	auto mainCharacterCenter = m_MainCharacter->GetBody()->GetWorldCenter();
+	if (mainCharacterCenter.y > lowestPoint)
+	{
+		// character is considered to have fallen off the world
+		m_MainCharacter->Kill();
 	}
 }

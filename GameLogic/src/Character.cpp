@@ -12,6 +12,7 @@ const int MAX_JUMPS = 1; // character can jump twice, ie. double jump
 
 FluidGame::Character::Character(b2Vec2 position, WorldPtr world)
 	: m_jumpsLeft(MAX_JUMPS)
+	, m_startPos(position)
 {
 	b2BodyDef bodyDef;
 	bodyDef.fixedRotation = true;
@@ -54,5 +55,12 @@ void FluidGame::Character::MoveLeft()
 {
 	auto currentVelocity = m_Body->GetLinearVelocity();
 	m_Body->SetLinearVelocity({ -MOVE_SPEED, currentVelocity.y });
+}
+
+void FluidGame::Character::Kill()
+{
+	// on death just return the character to their start position
+	m_Body->SetTransform(m_startPos, m_Body->GetAngle());
+	m_Body->SetLinearVelocity({ 0.0f, 0.0f });
 }
 
