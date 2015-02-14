@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ChemistsFun", "ChemistsFun\ChemistsFun.vcxproj", "{6A753571-4CF4-4083-9D1B-2D69CFA4C08A}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Windows8App", "Windows8App\Windows8App.vcxproj", "{6A753571-4CF4-4083-9D1B-2D69CFA4C08A}"
 	ProjectSection(ProjectDependencies) = postProject
 		{E70B2823-8AF5-49BD-850B-79897955D413} = {E70B2823-8AF5-49BD-850B-79897955D413}
 		{14FA8548-594F-41FC-8999-E9544C7CDF67} = {14FA8548-594F-41FC-8999-E9544C7CDF67}
