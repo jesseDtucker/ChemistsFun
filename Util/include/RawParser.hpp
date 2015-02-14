@@ -3,7 +3,6 @@
 #define RAW_PARSER_HPP
 
 #include <string>
-#include "boost/detail/endian.hpp"
 
 namespace Util
 {

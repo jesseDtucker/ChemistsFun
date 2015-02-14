@@ -20,8 +20,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GameLogic", "GameLogic\Game
 		{528BEFE7-F405-436E-B1F6-3E86D296AA44} = {528BEFE7-F405-436E-B1F6-3E86D296AA44}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ServiceModel", "..\..\..\Source\Repos\Arcusical\ServiceModel\ServiceModel.vcxproj", "{6190A6DB-FFE3-481B-BB69-F1666E89BFC6}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|ARM = Debug|ARM
@@ -161,36 +159,6 @@ Global
 		{E70B2823-8AF5-49BD-850B-79897955D413}.RelWithDebInfo|Win32.Build.0 = Release|Win32
 		{E70B2823-8AF5-49BD-850B-79897955D413}.RelWithDebInfo|x64.ActiveCfg = Release|x64
 		{E70B2823-8AF5-49BD-850B-79897955D413}.RelWithDebInfo|x64.Build.0 = Release|x64
-		{6190A6DB-FFE3-481B-BB69-F1666E89BFC6}.Debug|ARM.ActiveCfg = Debug|ARM
-		{6190A6DB-FFE3-481B-BB69-F1666E89BFC6}.Debug|ARM.Build.0 = Debug|ARM
-		{6190A6DB-FFE3-481B-BB69-F1666E89BFC6}.Debug|Win32.ActiveCfg = Debug|Win32
-		{6190A6DB-FFE3-481B-BB69-F1666E89BFC6}.Debug|Win32.Build.0 = Debug|Win32
-		{6190A6DB-FFE3-481B-BB69-F1666E89BFC6}.Debug|x64.ActiveCfg = Debug|x64
-		{6190A6DB-FFE3-481B-BB69-F1666E89BFC6}.Debug|x64.Build.0 = Debug|x64
-		{6190A6DB-FFE3-481B-BB69-F1666E89BFC6}.DebugWithCodeAnalysis|ARM.ActiveCfg = DebugWithCodeAnalysis|ARM
-		{6190A6DB-FFE3-481B-BB69-F1666E89BFC6}.DebugWithCodeAnalysis|ARM.Build.0 = DebugWithCodeAnalysis|ARM
-		{6190A6DB-FFE3-481B-BB69-F1666E89BFC6}.DebugWithCodeAnalysis|Win32.ActiveCfg = DebugWithCodeAnalysis|Win32
-		{6190A6DB-FFE3-481B-BB69-F1666E89BFC6}.DebugWithCodeAnalysis|Win32.Build.0 = DebugWithCodeAnalysis|Win32
-		{6190A6DB-FFE3-481B-BB69-F1666E89BFC6}.DebugWithCodeAnalysis|x64.ActiveCfg = DebugWithCodeAnalysis|x64
-		{6190A6DB-FFE3-481B-BB69-F1666E89BFC6}.DebugWithCodeAnalysis|x64.Build.0 = DebugWithCodeAnalysis|x64
-		{6190A6DB-FFE3-481B-BB69-F1666E89BFC6}.MinSizeRel|ARM.ActiveCfg = Release|ARM
-		{6190A6DB-FFE3-481B-BB69-F1666E89BFC6}.MinSizeRel|ARM.Build.0 = Release|ARM
-		{6190A6DB-FFE3-481B-BB69-F1666E89BFC6}.MinSizeRel|Win32.ActiveCfg = Release|Win32
-		{6190A6DB-FFE3-481B-BB69-F1666E89BFC6}.MinSizeRel|Win32.Build.0 = Release|Win32
-		{6190A6DB-FFE3-481B-BB69-F1666E89BFC6}.MinSizeRel|x64.ActiveCfg = Release|x64
-		{6190A6DB-FFE3-481B-BB69-F1666E89BFC6}.MinSizeRel|x64.Build.0 = Release|x64
-		{6190A6DB-FFE3-481B-BB69-F1666E89BFC6}.Release|ARM.ActiveCfg = Release|ARM
-		{6190A6DB-FFE3-481B-BB69-F1666E89BFC6}.Release|ARM.Build.0 = Release|ARM
-		{6190A6DB-FFE3-481B-BB69-F1666E89BFC6}.Release|Win32.ActiveCfg = Release|Win32
-		{6190A6DB-FFE3-481B-BB69-F1666E89BFC6}.Release|Win32.Build.0 = Release|Win32
-		{6190A6DB-FFE3-481B-BB69-F1666E89BFC6}.Release|x64.ActiveCfg = Release|x64
-		{6190A6DB-FFE3-481B-BB69-F1666E89BFC6}.Release|x64.Build.0 = Release|x64
-		{6190A6DB-FFE3-481B-BB69-F1666E89BFC6}.RelWithDebInfo|ARM.ActiveCfg = Release|ARM
-		{6190A6DB-FFE3-481B-BB69-F1666E89BFC6}.RelWithDebInfo|ARM.Build.0 = Release|ARM
-		{6190A6DB-FFE3-481B-BB69-F1666E89BFC6}.RelWithDebInfo|Win32.ActiveCfg = Release|Win32
-		{6190A6DB-FFE3-481B-BB69-F1666E89BFC6}.RelWithDebInfo|Win32.Build.0 = Release|Win32
-		{6190A6DB-FFE3-481B-BB69-F1666E89BFC6}.RelWithDebInfo|x64.ActiveCfg = Release|x64
-		{6190A6DB-FFE3-481B-BB69-F1666E89BFC6}.RelWithDebInfo|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
