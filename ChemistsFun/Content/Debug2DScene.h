@@ -17,7 +17,7 @@ namespace ChemistsFun
 {
 	class Debug2DScene;
 
-	typedef Arcusical::ServiceModel::ServiceResolver<Debug2DScene> DebugDrawService;
+	typedef Util::ServiceResolver<Debug2DScene> DebugDrawService;
 
 	// This sample renderer instantiates a basic rendering pipeline.
 	class Debug2DScene

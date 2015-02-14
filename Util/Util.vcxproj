@@ -269,6 +269,7 @@
     <ClInclude Include="include\MulticastDelegate.hpp" />
     <ClInclude Include="include\RawParser.hpp" />
     <ClInclude Include="include\ScopeGuard.hpp" />
+    <ClInclude Include="include\ServiceResolver.hpp" />
     <ClInclude Include="include\Stream.hpp" />
     <ClInclude Include="include\Subscription.hpp" />
     <ClInclude Include="include\targetver.h" />

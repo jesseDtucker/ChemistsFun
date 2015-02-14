@@ -6,7 +6,7 @@
 
 #include "Arc_Assert.hpp"
 
-namespace Arcusical { namespace ServiceModel {
+namespace Util {
 	
 	template<typename T>
 	class ServiceResolver final
@@ -86,6 +86,6 @@ namespace Arcusical { namespace ServiceModel {
 		s_serviceMap.erase(urn);
 	}
 
-}/* Service Model */ } /* Arcusical */
+} /* Util */
 
 #endif
